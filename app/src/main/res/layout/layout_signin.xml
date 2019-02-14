@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relative"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/viewbg"
+        android:layout_width="match_parent"
+        android:layout_height="216dp"
+        android:background="@drawable/bgmain" />
+
+    <View
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="42dp"
+        android:background="@drawable/bg_nugaback" />
+
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:src="@drawable/nuga_engicon"
+        android:transitionName="transition_mark" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="300dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/editText_enterid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginBottom="8dp"
+            android:hint="아이디를 입력하세요"
+            android:inputType="textPersonName" />
+
+
+        <EditText
+            android:id="@+id/editText_enter_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:layout_marginBottom="16dp"
+            android:hint="비밀번호를 입력하세요"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="224dp"
+            android:layout_height="48dp"
+            android:background="@drawable/signinbutton"
+            android:fontFamily="@font/nanumsquarebold"
+            android:text="로그인"
+            android:textColor="#b3256f"
+            android:textSize="16sp"
+            android:layout_marginBottom="8dp"
+            android:transitionName="transition_signin" />
+
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_googleLogin"
+            android:layout_width="224dp"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <ImageView
+        android:id="@+id/mark"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/nuga_engicon"
+        android:layout_gravity="center"
+        android:transitionName="transition_mark"
+        android:layout_marginTop="90dp"/>
+
+    <TextView
+        android:id="@+id/nugaTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(주) 누가 의료기"
+        android:textColor="#323996"
+        android:fontFamily="@font/nanumsquarebold"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginTop="48dp"
+        android:elevation="16dp"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:id="@+id/nugaSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="스마트 매장 관리"
+        android:layout_gravity="center"
+        android:fontFamily="@font/nanumsquareb"
+        android:textSize="24sp"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:text="회원가입"
+        android:fontFamily="@font/nanumsquarebold"
+        android:transitionName="transition_signup"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:background="@drawable/signupbutton"/>
+
+    <Button
+        android:id="@+id/btn_signin"
+        android:fontFamily="@font/nanumsquarebold"
+        android:layout_width="224dp"
+        android:layout_height="48dp"
+        android:background="@drawable/signinbutton"
+        android:layout_gravity="center"
+        android:transitionName="transition_signin"
+        android:layout_marginTop="16dp"
+        android:text="로그인"
+        android:textColor="#b3256f"
+        android:textSize="16sp"/>
+
+
+</LinearLayout>

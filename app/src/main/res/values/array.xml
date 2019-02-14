@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    ///////////////////////////////////////////////
+    <string-array name="temperature">
+        <item>16 ℃</item>
+        <item>17 ℃</item>
+        <item>18 ℃</item>
+        <item>19 ℃</item>
+        <item>20 ℃</item>
+        <item>21 ℃</item>
+        <item>22 ℃</item>
+        <item>23 ℃</item>
+        <item>24 ℃</item>
+        <item>25 ℃</item>
+        <item>26 ℃</item>
+        <item>27 ℃</item>
+        <item>28 ℃</item>
+        <item>29 ℃</item>
+        <item>30 ℃</item>
+        <item>31 ℃</item>
+        <item>32 ℃</item>
+    </string-array>
+
+    <string-array name="temperature_values">
+
+        <item>16 ℃</item>
+        <item>17 ℃</item>
+        <item>18 ℃</item>
+        <item>19 ℃</item>
+        <item>20 ℃</item>
+        <item>21 ℃</item>
+        <item>22 ℃</item>
+        <item>23 ℃</item>
+        <item>24 ℃</item>
+        <item>25 ℃</item>
+        <item>26 ℃</item>
+        <item>27 ℃</item>
+        <item>28 ℃</item>
+        <item>29 ℃</item>
+        <item>30 ℃</item>
+        <item>31 ℃</item>
+        <item>32 ℃</item>
+
+    </string-array>
+
+    ///////////////////////////////////////////////
+
+    <string-array name="dustnumbers">
+
+        <item>10 ㎍/m³</item>
+        <item>15 ㎍/m³</item>
+        <item>20 ㎍/m³</item>
+        <item>25 ㎍/m³</item>
+        <item>30 ㎍/m³</item>
+        <item>35 ㎍/m³</item>
+        <item>40 ㎍/m³</item>
+        <item>45 ㎍/m³</item>
+        <item>50 ㎍/m³</item>
+        <item>55 ㎍/m³</item>
+        <item>60 ㎍/m³</item>
+        <item>65 ㎍/m³</item>
+        <item>70 ㎍/m³</item>
+
+
+    </string-array>
+
+    <string-array name="dustnumbers_values">
+
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+        <item>25</item>
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+
+    </string-array>
+
+
+    <string-array name="humiditynumbers">
+
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+
+    </string-array>
+
+
+    <string-array name="humiditynumbers_values">
+
+        <item>30</item>
+        <item>35</item>
+        <item>40</item>
+        <item>45</item>
+        <item>50</item>
+        <item>55</item>
+        <item>60</item>
+        <item>65</item>
+        <item>70</item>
+
+    </string-array>
+
+    <string-array name="co2numbers">
+        <item>200 PPM</item>
+        <item>300 PPM</item>
+        <item>400 PPM</item>
+        <item>500 PPM</item>
+        <item>600 PPM</item>
+        <item>700 PPM</item>
+        <item>800 PPM</item>
+        <item>900 PPM</item>
+        <item>1000 PPM</item>
+        <item>1100 PPM</item>
+        <item>1200 PPM</item>
+        <item>1300 PPM</item>
+        <item>1400 PPM</item>
+        <item>1500 PPM</item>
+    </string-array>
+
+
+    <string-array name="co2numbers_values">
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>1000</item>
+        <item>1100</item>
+        <item>1200</item>
+        <item>1300</item>
+        <item>1400</item>
+        <item>1500</item>
+    </string-array>
+
+    <string-array name="brightnessnumbers">
+
+        <item>0 LUX</item>
+        <item>100 LUX</item>
+        <item>200 LUX</item>
+        <item>300 LUX</item>
+        <item>400 LUX</item>
+        <item>500 LUX</item>
+        <item>600 LUX</item>
+        <item>700 LUX</item>
+        <item>800 LUX</item>
+        <item>900 LUX</item>
+
+
+    </string-array>
+
+    <string-array name="brightnessnumbers_values">
+
+        <item>0</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>500</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+
+
+    </string-array>
+
+
+
+    ///////////////////////////////////////////////
+</resources>

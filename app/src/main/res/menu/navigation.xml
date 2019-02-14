@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/bottomBarItemOne"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home" />
+    <item
+        android:id="@+id/bottomBarItemSecond"
+        android:icon="@drawable/ic_public_black_24dp"
+        android:title="환경관리" />
+    <item
+        android:id="@+id/bottomBarItemThird"
+        android:icon="@drawable/ic_security_black_24dp"
+        android:title="안전관리" />
+    <item
+        android:id="@+id/bottomBarItemFourth"
+        android:icon="@drawable/ic_flash_on_black_24dp"
+        android:title="전력관리" />
+    <item
+        android:id="@+id/bottomBarItemFifth"
+        android:icon="@drawable/ic_settings_black_24dp"
+        android:title="설정" />
+
+</menu>

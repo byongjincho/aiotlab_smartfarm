@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="auto 설정">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="checkbox"
+            android:summary="설정에 맞게 자동으로 제어하려면 체크해주세요"
+            android:switchTextOff="OFF"
+            android:switchTextOn="ON"
+            android:title="자동 설정" />
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="기기 설정">
+
+
+        <ListPreference
+            android:entries="@array/temperature"
+            android:entryValues="@array/temperature_values"
+            android:key="list1"
+            android:summary="설정 온도"
+            android:title="에어컨 온도 설정" />
+
+        <ListPreference
+            android:entries="@array/co2numbers"
+            android:entryValues="@array/co2numbers_values"
+            android:key="list2"
+            android:title="환풍기 설정" />
+
+        <ListPreference
+            android:entries="@array/dustnumbers"
+            android:entryValues="@array/dustnumbers_values"
+            android:key="list3"
+            android:title="공기청정기 설정" />
+
+        <ListPreference
+            android:entries="@array/humiditynumbers"
+            android:entryValues="@array/humiditynumbers_values"
+            android:key="list4"
+            android:title="가습기 설정" />
+
+        <ListPreference
+            android:entries="@array/brightnessnumbers"
+            android:entryValues="@array/brightnessnumbers_values"
+            android:key="list5"
+            android:title="밝기 설정" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

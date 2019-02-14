@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Nuga Smart Manager</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+
+    <string-array name="sensors">
+
+        <item>센서1</item>
+        <item>센서2</item>
+        <item>센서3</item>
+        <item>센서4</item>
+        <item>센서5</item>
+        <item>센서6</item>
+        <item>센서7</item>
+        <item>센서8</item>
+        <item>센서9</item>
+        <item>센서10</item>
+
+
+    </string-array>
+
+</resources>

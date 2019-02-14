@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="www.nugamedical.com">
+
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/nuga_engicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name="www.yonsei.ac.nugaapplication.IntroActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.LoginActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.MainActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.CalendarActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.SettingActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.SigninActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.SingupActivity"></activity>
+    </application>
+
+</manifest>

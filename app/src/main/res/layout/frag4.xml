@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_frag4"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -32,12 +29,29 @@
 
             </RelativeLayout>
 
-            <Spinner
-                android:id="@+id/sensor_select"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"></Spinner>
+                android:orientation="horizontal">
 
+                <TextView
+                    android:text="측정 시간 : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txt_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <Spinner
+
+                    android:id="@+id/sensor_select"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"></Spinner>
+            </LinearLayout>
 
             <FrameLayout
                 android:id="@+id/frame_linechart"
@@ -57,4 +71,3 @@
 
         </LinearLayout>
     </ScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>

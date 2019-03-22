@@ -1,22 +1,27 @@
 package www.yonsei.ac.nugaapplication;
 
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+import android.preference.SwitchPreference;
+import android.widget.CheckBox;
 
 import www.nugamedical.com.R;
 
-public class SettingActivity extends PreferenceActivity {
-
-
+public class BottomSettingActivity extends PreferenceActivity {
+    SwitchPreference switchPreference;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         addPreferencesFromResource(R.xml.prefs);
+
+        switchPreference = (SwitchPreference) findPreference("autoSwitch");
+        switchPreference.setSummaryOff("상태 : 수동");
+        switchPreference.setSummaryOn("상태 : 자동");
 
         //설정 하면 설정값 summary 보여주기
         bindSummaryValue(findPreference("list1"));
@@ -27,7 +32,7 @@ public class SettingActivity extends PreferenceActivity {
 
     }
 
-    //설정 하면 설정값 summary 보여주기
+    /** 설정 하면 설정값 summary 보여주기 */
     private static void bindSummaryValue(Preference preference){
         preference.setOnPreferenceChangeListener(listener);
         listener.onPreferenceChange(preference,
@@ -48,9 +53,7 @@ public class SettingActivity extends PreferenceActivity {
                         ? listPreference.getEntries()[index]
                         :null);
             }
-
             return true;
         }
     };
-
 }

@@ -16,12 +16,10 @@ import www.nugamedical.com.R;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private  Button btn_signin, btn_signup;
+    private Button btn_signin, btn_signup;
     private ImageView mark;
     private TextView nugaTitle, nugaSubtitle;
     private Animation fromright, fromleft, fromtop;
-
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,33 +42,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         mark.setAnimation(fromtop);
         nugaTitle.setAnimation(fromleft);
         nugaSubtitle.setAnimation(fromright);
-
-
-
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
+            // 회원가입 버튼 클릭 동작
             case R.id.btn_signup:
+                //회원가입 화면으로 이동(SingupActivity로 이동)
                 Intent intent_gosignup = new Intent(LoginActivity.this, SingupActivity.class);
-
                 startActivity(intent_gosignup);
-
                 break;
-
+            // 로그인 버튼 클릭 동작
             case R.id.btn_signin:
+                //로그인 화면으로 이동
                 Intent intent_gosignin = new Intent(LoginActivity.this, SigninActivity.class);
-
-
                 startActivity(intent_gosignin);
-
                 break;
-
-
         }
     }
-
-
-
 }

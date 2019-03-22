@@ -11,10 +11,10 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/bg3"
+            android:gravity="center"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -26,11 +26,12 @@
                 android:layout_marginRight="20dp">
 
                 <ImageView
+                    android:id="@+id/bluetoothConnect"
                     android:layout_width="62dp"
                     android:layout_height="62dp"
                     android:layout_alignParentRight="true"
                     android:src="@drawable/ic_bluetooth_black_24dp"
-                    android:id="@+id/bluetoothConnect"/>
+                    android:visibility="invisible" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,6 +144,7 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
+                                        android:fontFamily="@font/nanumsquareb"
                                         android:text=""
                                         android:textSize="48sp" />
 
@@ -153,19 +155,19 @@
                                         android:orientation="horizontal">
 
                                         <TextView
-                                            android:fontFamily="@font/nanumsquareb"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
+                                            android:fontFamily="@font/nanumsquareb"
                                             android:text="온도"
                                             android:textColor="#191919"
                                             android:textSize="16sp" />
 
                                         <TextView
-                                            android:fontFamily="@font/nanumsquareb"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:layout_gravity="center"
+                                            android:fontFamily="@font/nanumsquareb"
                                             android:text="(℃)"
                                             android:textColor="#191919"
                                             android:textSize="32sp" />
@@ -182,6 +184,7 @@
                                         android:id="@+id/nowHumidity"
                                         android:layout_width="match_parent"
                                         android:layout_height="match_parent"
+                                        android:fontFamily="@font/nanumsquareb"
                                         android:gravity="center"
                                         android:text=""
                                         android:textSize="48sp" />
@@ -195,16 +198,16 @@
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
+                                            android:fontFamily="@font/nanumsquareb"
                                             android:text="습도 "
                                             android:textColor="#191919"
-                                            android:fontFamily="@font/nanumsquareb"
                                             android:textSize="16sp" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:text="(%)"
                                             android:fontFamily="@font/nanumsquareb"
+                                            android:text="(%)"
                                             android:textColor="#191919"
                                             android:textSize="32sp" />
 
@@ -241,47 +244,54 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:textSize="12sp"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text="미세먼지 :" />
+                                    android:text="미세먼지 : " />
 
                                 <TextView
+                                    android:textSize="12sp"
                                     android:id="@+id/now_big_dust"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="   " />
+                                    android:text="-" />
 
                                 <TextView
+                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumsquareb"
                                     android:text=" ㎍/㎥" />
 
                                 <TextView
+                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="24dp"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text="초미세먼지 :" />
+                                    android:text="초미세먼지 : " />
 
                                 <TextView
+                                    android:textSize="12sp"
                                     android:id="@+id/now_small_dust"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="   " />
+                                    android:text="-" />
 
                                 <TextView
+                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumsquareb"
                                     android:text=" ㎍/㎥" />
                             </LinearLayout>
                         </LinearLayout>
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center"
                             android:text="미세먼지 데이터는 airkorea로부터 제공받았습니다."
-                            android:textSize="6sp"
-                            android:layout_gravity="center"/>
+                            android:textSize="6sp" />
                     </LinearLayout>
 
                 </android.support.v7.widget.CardView>
@@ -332,8 +342,9 @@
                                 android:id="@+id/getTempText"
                                 android:layout_width="60dp"
                                 android:layout_height="50dp"
+                                android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
-                                android:text=""
+                                android:text="-"
                                 android:textSize="25sp"
                                 tools:text="25.2" />
 
@@ -355,10 +366,12 @@
                                 android:src="@drawable/lightblackicon" />
 
                             <TextView
+                                android:id="@+id/getCDStext"
                                 android:layout_width="60dp"
                                 android:layout_height="50dp"
+                                android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
-                                android:text="225"
+                                android:text="-"
                                 android:textSize="25sp"
                                 tools:text="225" />
 
@@ -394,8 +407,9 @@
                                 android:id="@+id/getHumidityText"
                                 android:layout_width="60dp"
                                 android:layout_height="50dp"
+                                android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
-                                android:text=""
+                                android:text="-"
                                 android:textSize="25sp"
                                 tools:text="41" />
 
@@ -418,8 +432,9 @@
                             <TextView
                                 android:layout_width="60dp"
                                 android:layout_height="50dp"
+                                android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
-                                android:text="1000"
+                                android:text="-"
                                 android:textSize="25sp"
                                 tools:text="1000" />
 
@@ -569,12 +584,9 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
 
-                            <ImageView
-                                android:layout_width="80dp"
-                                android:layout_height="80sp"
-                                android:src="@drawable/thundericon" />
 
                             <TextView
+                                android:id="@+id/test"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="총 전력량" />

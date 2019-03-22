@@ -33,7 +33,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth mAuth;
     private SignInButton btn_googleLogin;
     private GoogleSignInClient mGoogleSignInClient;
-    private static final String TAG = "GoogleActivity";
+    private static final String TAG = "SigninActivity";
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth.AuthStateListener mAuthListener;
     
@@ -48,7 +48,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    Intent intent_signin = new Intent(SigninActivity.this, MainActivity.class);
+                    Intent intent_signin = new Intent(SigninActivity.this, EnterIPandPort.class);
                     startActivity(intent_signin);
                     finish();
                     // User is signed in
@@ -57,10 +57,8 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
                     // User is signed out
                     Log.d(TAG, "onAuthStateChanged:signed_out");
                 }
-
             }
         };
-        // [END auth_state_listener]
 
 
         btn_login = findViewById(R.id.btn_login);
@@ -75,6 +73,7 @@ public class SigninActivity extends AppCompatActivity implements View.OnClickLis
         mAuth = FirebaseAuth.getInstance();
 
         // Configure Google Sign In
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.app_name))       // default_web_client_id 로 바꿔야함
                 .requestEmail()

@@ -23,9 +23,11 @@
         <activity android:name="www.yonsei.ac.nugaapplication.LoginActivity"></activity>
         <activity android:name="www.yonsei.ac.nugaapplication.MainActivity"></activity>
         <activity android:name="www.yonsei.ac.nugaapplication.CalendarActivity"></activity>
-        <activity android:name="www.yonsei.ac.nugaapplication.SettingActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.BottomSettingActivity"></activity>
         <activity android:name="www.yonsei.ac.nugaapplication.SigninActivity"></activity>
         <activity android:name="www.yonsei.ac.nugaapplication.SingupActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.SensorControlActivity"></activity>
+        <activity android:name="www.yonsei.ac.nugaapplication.EnterIPandPort"></activity>
     </application>
 
 </manifest>

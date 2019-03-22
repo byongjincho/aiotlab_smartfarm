@@ -1,6 +1,6 @@
 package www.yonsei.ac.nugaapplication;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,6 +28,11 @@ public class LinechartSensor2 extends Fragment {
 
     private View view;
 
+    public static LinechartSensor2 newInstance() {
+        LinechartSensor2 f = new LinechartSensor2();
+        return f;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -35,12 +40,11 @@ public class LinechartSensor2 extends Fragment {
 
         mChart = view.findViewById(R.id.linechart_sensor2);
 
-        //        mChart.setOnChartGestureListener(SecondFragmentThermo.this);
+        //      mChart.setOnChartGestureListener(SecondFragmentThermo.this);
         //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
 
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);
-
 
 
         // 오른쪽 와이축 없앰
@@ -48,27 +52,27 @@ public class LinechartSensor2 extends Fragment {
 
         //그래프 데이터 입력
         ArrayList<Entry> yData = new ArrayList<>();
-        yData.add(new Entry(0,342));
-        yData.add(new Entry(1,395));
-        yData.add(new Entry(2,261));
-        yData.add(new Entry(3,155));
-        yData.add(new Entry(4,426));
-        yData.add(new Entry(5,325));
-        yData.add(new Entry(6,215));
+        yData.add(new Entry(0, 342));
+        yData.add(new Entry(1, 395));
+        yData.add(new Entry(2, 261));
+        yData.add(new Entry(3, 155));
+        yData.add(new Entry(4, 426));
+        yData.add(new Entry(5, 325));
+        yData.add(new Entry(6, 215));
 
-        LineDataSet set1 = new LineDataSet(yData,"센서2");
+        LineDataSet set1 = new LineDataSet(yData, "센서2");
         set1.setFillAlpha(110);
         set1.setColor(Color.BLACK);
         set1.setLineWidth(3f);
 
-        ArrayList<ILineDataSet> dataSets= new ArrayList<>();
+        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
         dataSets.add(set1);
 
         LineData data = new LineData(dataSets);
 
         mChart.setData(data);
 
-        String[] values = new String[]{"월","화","수","목","금","토","일"};
+        String[] values = new String[]{"월", "화", "수", "목", "금", "토", "일"};
 
         XAxis xAxis = mChart.getXAxis();
         xAxis.setValueFormatter(new MyXAxisValueFormatter(values));
@@ -87,13 +91,13 @@ public class LinechartSensor2 extends Fragment {
     public class MyXAxisValueFormatter implements IAxisValueFormatter {
         private String[] mValues;
 
-        public MyXAxisValueFormatter(String[] values){
+        public MyXAxisValueFormatter(String[] values) {
             this.mValues = values;
         }
 
         @Override
         public String getFormattedValue(float value, AxisBase axis) {
-            return mValues[(int)value];
+            return mValues[(int) value];
         }
     }
 }

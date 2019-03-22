@@ -1,7 +1,7 @@
 package www.yonsei.ac.nugaapplication;
 
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -37,9 +37,6 @@ public class SecondFragmentCO2 extends Fragment {
         view = inflater.inflate(R.layout.layout_frag2_co2, container, false);
 
         mChart = view.findViewById(R.id.chart_co2);
-
-//        mChart.setOnChartGestureListener(SecondFragmentThermo.this);
-        //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
 
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);

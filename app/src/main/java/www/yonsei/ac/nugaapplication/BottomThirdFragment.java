@@ -1,6 +1,6 @@
 package www.yonsei.ac.nugaapplication;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -12,13 +12,13 @@ import android.view.ViewGroup;
 
 import www.nugamedical.com.R;
 
-public class ThirdFragment extends Fragment {
+public class BottomThirdFragment extends Fragment {
 
     private SwipeRefreshLayout swipe_frag3;
 
 
-    public static ThirdFragment newInstance(){
-        ThirdFragment f = new ThirdFragment();
+    public static BottomThirdFragment newInstance(){
+        BottomThirdFragment f = new BottomThirdFragment();
         return f;
     }
 
@@ -34,7 +34,7 @@ public class ThirdFragment extends Fragment {
             @Override
             public void onRefresh() {
 
-                showFragment(ThirdFragment.newInstance());
+                showFragment(BottomThirdFragment.newInstance());
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -44,13 +44,10 @@ public class ThirdFragment extends Fragment {
                 },3000);
             }
         });
-
-
         return view;
     }
 
     public void showFragment(Fragment f){
         getFragmentManager().beginTransaction().replace(R.id.frame_main, f).commit();
     }
-
 }

@@ -1,7 +1,7 @@
 package www.yonsei.ac.nugaapplication;
 
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -30,15 +30,13 @@ public class SecondFragmentThermo extends Fragment {
     private LineChart mChart;
 
     private  View view;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_frag2_thermo, container, false);
 
         mChart = view.findViewById(R.id.chart1);
-
-//        mChart.setOnChartGestureListener(SecondFragmentThermo.this);
-  //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
 
         mChart.setDragEnabled(true);
         mChart.setScaleEnabled(true);

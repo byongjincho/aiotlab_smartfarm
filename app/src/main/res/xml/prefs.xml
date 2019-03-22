@@ -3,8 +3,9 @@
 
     <PreferenceCategory android:title="auto 설정">
         <SwitchPreference
+            android:id="@+id/autoSwitch"
             android:defaultValue="false"
-            android:key="checkbox"
+            android:key="autoSwitch"
             android:summary="설정에 맞게 자동으로 제어하려면 체크해주세요"
             android:switchTextOff="OFF"
             android:switchTextOn="ON"
@@ -12,7 +13,6 @@
 
     </PreferenceCategory>
     <PreferenceCategory android:title="기기 설정">
-
 
         <ListPreference
             android:entries="@array/temperature"

@@ -5,8 +5,12 @@
 
     <item android:id="@+id/calender" android:icon="@drawable/ic_calender_24dp"
         android:title="Calender"/>
+
     <item android:id="@+id/homepage" android:icon="@drawable/ic_http_black_24dp"
         android:title="Homepage"/>
+
+    <item android:id="@+id/sensor_control" android:icon="@drawable/ic_logout_24dp"
+        android:title="센서 제어"/>
 
     <item android:id="@+id/logout" android:icon="@drawable/ic_logout_24dp"
         android:title="로그아웃"/>

@@ -12,6 +12,7 @@ public class IntroActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //보여줄 인트로 그림
         setContentView(R.layout.layout_intro);
 
         Handler handler = new Handler(); // 객체생성
@@ -22,7 +23,7 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 3000);           // 몇 초간 띄우고 다음 액티비티로 넘어갈지 결정
+        }, 1000);           // 몇 초간 띄우고 다음 액티비티로 넘어갈지 결정
 
     }
 }

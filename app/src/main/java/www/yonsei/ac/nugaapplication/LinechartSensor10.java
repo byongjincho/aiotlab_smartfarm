@@ -1,6 +1,6 @@
 package www.yonsei.ac.nugaapplication;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,6 +26,12 @@ public class LinechartSensor10 extends Fragment {
 
     private LineChart mChart;
     private View view;
+
+    public static LinechartSensor10 newInstance(){
+        LinechartSensor10 f = new LinechartSensor10();
+        return f;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {

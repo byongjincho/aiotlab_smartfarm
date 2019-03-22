@@ -1,6 +1,6 @@
 package www.yonsei.ac.nugaapplication;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,14 +26,19 @@ public class LinechartSensor3 extends Fragment {
 
     private LineChart mChart;
     private View view;
+    public static LinechartSensor3 newInstance(){
+        LinechartSensor3 f = new LinechartSensor3();
+        return f;
+    }
     @Nullable
     @Override
+
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.layout_sensor3, container, false);
 
         mChart = view.findViewById(R.id.linechart_sensor3);
 
-        //        mChart.setOnChartGestureListener(SecondFragmentThermo.this);
+        //      mChart.setOnChartGestureListener(SecondFragmentThermo.this);
         //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
 
         mChart.setDragEnabled(true);

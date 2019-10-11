@@ -1,161 +1,413 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#e0e0e0"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:background="#e0e0e0"
+        android:padding="15dp">
 
-        <EditText
-            android:id="@+id/edt_ip"
+
+
+        <WebView
+            android:id="@+id/webview_sensor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_above="@id/txt_lightControl"
+            android:background="#e0e0e0"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#e0e0e0"/>
+
+        <LinearLayout
+            android:id="@+id/layyout1"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:id="@+id/txt_ip"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/edit_round"
+                android:ems="15"
+                android:fontFamily="@font/nanumsquareb"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/txt_port"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:background="@drawable/edit_round"
+                android:ems="15"
+                android:fontFamily="@font/nanumsquareb"
+                android:inputType="textPersonName"
+                android:padding="5dp"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@id/webview_sensor"
+            android:id="@+id/txt_lightControl"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarebold"
+            android:padding="10dp"
+            android:text="조명 제어"
+            android:textColor="@color/colorNuga"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_below="@id/txt_lightControl"
+            android:id="@+id/layout_light"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_round"
-            android:ems="15"
-            android:fontFamily="@font/nanumsquareb"
-            android:hint="IP 주소 (000.000.000.000)"
-            android:padding="5dp"
-            android:textSize="16sp" />
-    </LinearLayout>
+            android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/edt_port"
+                <TextView
+                    android:id="@+id/txt_ledswitch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/LEDswitch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_ledswitch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/LEDswitch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_ledswitch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/LEDswitch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_ledswitch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/LEDswitch4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@id/layout_light"
+            android:id="@+id/txt_safe"
             android:layout_width="wrap_content"
-            android:layout_height="32dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanumsquarebold"
+            android:padding="10dp"
+            android:text="방범 제어"
+            android:textColor="@color/colorNuga"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_below="@+id/txt_safe"
+            android:id="@+id/layout_safe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/edit_round"
-            android:ems="10"
-            android:fontFamily="@font/nanumsquareb"
-            android:hint="PORT 번호"
-            android:padding="5dp"
-            android:textSize="16sp" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/checkButton"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_Sirenswitch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/Sirenswitch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_Sirenswitch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/Sirenswitch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_below="@+id/layout_safe"
+            android:id="@+id/txt_concent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="확인"
-            android:layout_marginStart="5dp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:orientation="horizontal">
-
-        <EditText
-            android:id="@+id/edt"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_gravity="center"
-            android:background="@drawable/edit_rec"
-            android:ems="8"
-            android:fontFamily="@font/nanumsquareb"
-            android:hint="명령어 입력창"
-            android:padding="5dp" />
-
-
-        <Button
-            android:text="보내기"
-            android:id="@+id/send_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:textColor="@color/colorNuga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/nanumsquarebold"
-        android:padding="10dp"
-        android:text="조명 제어"
-        android:textSize="24sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_round"
-        android:orientation="vertical">
+            android:fontFamily="@font/nanumsquarebold"
+            android:padding="10dp"
+            android:text="콘센트 제어"
+            android:textColor="@color/colorNuga"
+            android:textSize="24sp" />
 
         <LinearLayout
+            android:layout_below="@+id/txt_concent"
+            android:id="@+id/layout_concent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@drawable/edit_round"
+            android:orientation="vertical">
 
-
-
-            <Switch
-                android:id="@+id/switch1"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="전구 1     " />
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+                <Switch
+                    android:id="@+id/power_switch6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_power_switch7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="name"
+                    android:textSize="24sp" />
+
+
+                <Switch
+                    android:id="@+id/power_switch7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
-            <Switch
-                android:id="@+id/switch2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="전구 2     " />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
-            <Switch
-                android:id="@+id/switch3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="전구 3     " />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-
-            <Switch
-                android:id="@+id/switch4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="전구 4     " />
-
-        </LinearLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+    </RelativeLayout>
+</ScrollView>

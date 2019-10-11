@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <PreferenceCategory android:title="푸시 알람 설정">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="push_all"
+            android:summaryOff="푸시알람 서비스를 이용하지 않습니다"
+            android:summaryOn="푸시알람 서비스를 이용합니다"
+            android:title="푸시알람 사용" />
+
+        <SwitchPreference
+            android:dependency="push_all"
+            android:key="push_temperature"
+            android:title="온도" />
+        <SwitchPreference
+            android:dependency="push_all"
+            android:key="push_bright"
+            android:title="조도" />
+
+
+    </PreferenceCategory>
+
     <PreferenceCategory android:title="auto 설정">
         <SwitchPreference
             android:id="@+id/autoSwitch"
@@ -11,38 +31,47 @@
             android:switchTextOn="ON"
             android:title="자동 설정" />
 
+        <SwitchPreference
+            android:id="@+id/autoSafety"
+            android:defaultValue="false"
+            android:key="autoSafety"
+            android:summary="방범모드를 원하시면 체크해주세요"
+            android:switchTextOff="OFF"
+            android:switchTextOn="ON"
+            android:title="방범 모드 설정" />
+
     </PreferenceCategory>
     <PreferenceCategory android:title="기기 설정">
 
         <ListPreference
             android:entries="@array/temperature"
             android:entryValues="@array/temperature_values"
-            android:key="list1"
+            android:key="SETTEMP"
             android:summary="설정 온도"
-            android:title="에어컨 온도 설정" />
+            android:title="기준 온도 설정" />
 
         <ListPreference
             android:entries="@array/co2numbers"
             android:entryValues="@array/co2numbers_values"
-            android:key="list2"
+            android:key="SETCO2"
             android:title="환풍기 설정" />
 
         <ListPreference
             android:entries="@array/dustnumbers"
             android:entryValues="@array/dustnumbers_values"
-            android:key="list3"
+            android:key="SETDUST"
             android:title="공기청정기 설정" />
 
         <ListPreference
             android:entries="@array/humiditynumbers"
             android:entryValues="@array/humiditynumbers_values"
-            android:key="list4"
+            android:key="SETHUMID"
             android:title="가습기 설정" />
 
         <ListPreference
             android:entries="@array/brightnessnumbers"
             android:entryValues="@array/brightnessnumbers_values"
-            android:key="list5"
+            android:key="SETBRIGHT"
             android:title="밝기 설정" />
 
     </PreferenceCategory>

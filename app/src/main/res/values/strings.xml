@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Nuga Smart Manager</string>
+    <string name="app_name">AIOTLab의 스마트팜 솔루션</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -9,16 +9,16 @@
 
     <string-array name="sensors">
 
-        <item>센서1</item>
-        <item>센서2</item>
-        <item>센서3</item>
-        <item>센서4</item>
-        <item>센서5</item>
-        <item>센서6</item>
-        <item>센서7</item>
-        <item>센서8</item>
-        <item>센서9</item>
-        <item>센서10</item>
+        <item>온도(minute)</item>
+        <item>온도(day)</item>
+        <item>습도(minute)</item>
+        <item>습도(day)</item>
+        <item>조도(minute)</item>
+        <item>조도(day)</item>
+        <item>전력(minute)</item>
+        <item>전력(day)</item>
+        <item>열량지수(minute)</item>
+        <item>열량지수(day)</item>
 
 
     </string-array>

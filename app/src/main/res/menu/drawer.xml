@@ -9,10 +9,14 @@
     <item android:id="@+id/homepage" android:icon="@drawable/ic_http_black_24dp"
         android:title="Homepage"/>
 
-    <item android:id="@+id/sensor_control" android:icon="@drawable/ic_logout_24dp"
+    <item android:id="@+id/sensor_control" android:icon="@drawable/ic_touch_app_black_24dp"
         android:title="센서 제어"/>
+
+    <item android:id="@+id/cctv_ip" android:icon="@drawable/ic_videocam_black_24dp"
+        android:title="IP주소 설정"/>
 
     <item android:id="@+id/logout" android:icon="@drawable/ic_logout_24dp"
         android:title="로그아웃"/>
+
 
 </menu>

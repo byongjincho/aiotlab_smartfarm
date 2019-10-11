@@ -2,548 +2,523 @@
 <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe_frag2"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+    <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:background="@drawable/aiot_bg">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1200dp"
-                android:background="@drawable/bg3">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginRight="20dp">
 
-                    <RelativeLayout
+                    <ImageView
+                        android:id="@+id/imagebtn_refresh"
+                        android:layout_width="62dp"
+                        android:layout_height="62dp"
+                        android:layout_alignParentRight="true" />
 
-
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginRight="20dp">
+                        android:fontFamily="@font/nanumsquarebold"
+                        android:text="환경관리"
+                        android:textColor="#ffffff"
+                        android:textSize="22sp" />
 
-                        <ImageView
-                            android:id="@+id/imagebtn_refresh"
-                            android:layout_width="62dp"
-                            android:layout_height="62dp"
-                            android:layout_alignParentRight="true" />
+                </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/nanumsquarebold"
-                            android:text="환경관리"
-                            android:textColor="#ffffff"
-                            android:textSize="22sp" />
+                <GridLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:columnCount="2"
+                    android:columnOrderPreserved="true">
 
-                    </RelativeLayout>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_thermo"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="6dp">
 
-                    <GridLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:alignmentMode="alignMargins"
-                        android:columnCount="2"
-                        android:columnOrderPreserved="true">
-
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/btn_thermo"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="6dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
                             <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
 
-                                <LinearLayout
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/thermoicon" />
+
+                                <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="8dp">
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="온도"
+                                    android:textColor="@color/colorNuga"
+                                    android:textSize="18sp" />
 
-                                    <ImageView
-                                        android:layout_width="20dp"
-                                        android:layout_height="20dp"
-                                        android:src="@drawable/thermoicon" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="(설정,현재)"
+                                    android:textColor="#6f6f6f"
+                                    android:textSize="8sp" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="온도"
-                                        android:textColor="@color/colorNuga"
-                                        android:textSize="18sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="(설정,현재)"
-                                        android:textColor="#6f6f6f"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:paddingTop="16sp"
-                                    android:paddingBottom="16sp">
-
-                                    <TextView
-                                        android:id="@+id/text_setTemperature"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="8dp"
-                                        android:gravity="top"
-                                        android:text="25"
-                                        android:textSize="24sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquareb"
-                                        android:textSize="16sp" />
-
-                                    <TextView
-                                        android:id="@+id/txt_nowtemp"
-                                        android:layout_width="55sp"
-                                        android:layout_height="55sp"
-                                        android:textColor="#353748"
-                                        android:textSize="50sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquareb"
-                                        android:text="℃"
-                                        android:textSize="24sp" />
-
-                                </LinearLayout>
                             </LinearLayout>
 
-                        </android.support.v7.widget.CardView>
-
-
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/btn_brightness"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="6dp">
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="16sp"
+                                android:paddingBottom="16sp">
 
-                                <LinearLayout
+                                <TextView
+                                    android:id="@+id/text_setTemperature"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="8dp">
+                                    android:layout_margin="8dp"
+                                    android:gravity="top"
+                                    android:text="25" />
 
-                                    <ImageView
-                                        android:layout_width="20dp"
-                                        android:layout_height="20dp"
-                                        android:src="@drawable/lightblackicon" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:textSize="16sp" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="밝기"
-                                        android:textColor="@color/colorNuga"
-                                        android:textSize="18sp" />
+                                <TextView
+                                    android:id="@+id/txt_nowtemp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="-"
+                                    android:textColor="#353748" />
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:textColor="#6f6f6f"
-                                        android:textSize="8sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:text="℃" />
 
-                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:paddingTop="16sp"
-                                    android:paddingBottom="16sp">
+                    </android.support.v7.widget.CardView>
 
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_margin="8dp"
-                                        android:orientation="vertical">
 
-                                        <TextView
-                                            android:id="@+id/text_setBrightness"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="top"
-                                            android:text="255"
-                                            android:textSize="24sp" />
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_brightness"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="6dp">
 
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text="lux"
-                                            android:textSize="16sp" />
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
 
-                                    </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
 
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/lightblackicon" />
 
-                                        <TextView
-                                            android:id="@+id/txt_nowbrightness"
-                                            android:layout_width="55sp"
-                                            android:layout_height="55sp"
-                                            android:textColor="#353748"
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="밝기"
+                                    android:textColor="@color/colorNuga"
+                                    android:textSize="18sp" />
 
-                                            android:textSize="50sp" />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:textColor="#6f6f6f"
+                                    android:textSize="8sp" />
 
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text="lux"
-                                            android:textSize="24sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
                             </LinearLayout>
 
-
-                        </android.support.v7.widget.CardView>
-
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/btn_humidity"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="6dp">
-
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="16sp"
+                                android:paddingBottom="16sp">
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="8dp">
-
-                                    <ImageView
-                                        android:layout_width="20dp"
-                                        android:layout_height="20dp"
-                                        android:src="@drawable/humidityblack" />
+                                    android:layout_margin="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="습도"
-                                        android:textColor="@color/colorNuga"
-                                        android:textSize="18sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="(설정,현재)"
-                                        android:textColor="#6f6f6f"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:paddingTop="16sp"
-                                    android:paddingBottom="16sp">
-
-                                    <TextView
-                                        android:id="@+id/text_setHumidity"
+                                        android:id="@+id/text_setBrightness"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:gravity="top"
-                                        android:text="50"
-                                        android:textSize="24sp" />
+                                        android:text="255" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/nanumsquareb"
-                                        android:text="%"
+                                        android:gravity="center"
+                                        android:text="lux" />
+
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/txt_nowbrightness"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="-"
+                                        android:textColor="#353748" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumsquareb"
+                                        android:gravity="center"
+                                        android:text="lux" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_humidity"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/humidityblack" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="습도"
+                                    android:textColor="@color/colorNuga"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="(설정,현재)"
+                                    android:textColor="#6f6f6f"
+                                    android:textSize="8sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="16sp"
+                                android:paddingBottom="16sp">
+
+                                <TextView
+                                    android:id="@+id/text_setHumidity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="top"
+                                    android:text="50" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:text="%"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/txt_nowhumidity"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text="-"
+                                    android:textColor="#353748" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:text="%" />
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_dust"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:layout_width="17dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/dustprooficon" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="미세먼지"
+                                    android:textColor="@color/colorNuga"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text=""
+                                    android:textColor="#6f6f6f"
+                                    android:textSize="8sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="16sp"
+                                android:paddingBottom="16sp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/text_setDust"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:gravity="top"
+                                        android:text="93" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumsquareb"
+                                        android:gravity="center"
+                                        android:text="㎍/㎥"
                                         android:textSize="16sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/txt_nowhumidity"
-                                        android:layout_width="55sp"
-                                        android:layout_height="55sp"
-                                        android:layout_marginStart="8dp"
-                                        android:textColor="#353748"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:text="-"
+                                        android:textColor="#353748" />
 
-                                        android:textSize="50sp" />
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/nanumsquareb"
+                                        android:gravity="center"
+                                        android:text="㎍/㎥" />
+                                </LinearLayout>
+
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/btn_co2"
+                        android:layout_rowWeight="1"
+                        android:layout_columnWeight="1"
+                        android:layout_margin="12dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="6dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:padding="8dp">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/co2icon" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="CO2"
+                                    android:textColor="@color/colorNuga"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:text="(설정,현재)"
+                                    android:textColor="#6f6f6f"
+                                    android:textSize="8sp" />
+
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:paddingTop="16sp"
+                                android:paddingBottom="16sp">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:id="@+id/text_setCO2"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:gravity="top"
+                                        android:text="895" />
 
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:fontFamily="@font/nanumsquareb"
-                                        android:text="%"
-                                        android:textSize="24sp" />
-
+                                        android:gravity="center"
+                                        android:text="ppm"
+                                        android:textSize="14sp" />
                                 </LinearLayout>
-                            </LinearLayout>
-
-
-                        </android.support.v7.widget.CardView>
-
-
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/btn_dust"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="6dp">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
 
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="8dp">
-
-                                    <ImageView
-                                        android:layout_width="17dp"
-                                        android:layout_height="20dp"
-                                        android:src="@drawable/dustprooficon" />
+                                    android:layout_marginStart="8dp"
+                                    android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="미세먼지"
-                                        android:textColor="@color/colorNuga"
-                                        android:textSize="18sp" />
+                                        android:layout_gravity="center"
+                                        android:text="-"
+                                        android:textColor="#353748" />
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text=""
-                                        android:textColor="#6f6f6f"
-                                        android:textSize="8sp" />
-
+                                        android:fontFamily="@font/nanumsquareb"
+                                        android:gravity="center"
+                                        android:text="ppm" />
                                 </LinearLayout>
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:paddingTop="16sp"
-                                    android:paddingBottom="16sp">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/text_setDust"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="top"
-                                            android:text="93"
-                                            android:textSize="24sp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text=""
-                                            android:textSize="16sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="8dp"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="68"
-                                            android:textColor="#353748"
-
-                                            android:textSize="50sp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text="㎍/㎥"
-                                            android:textSize="20sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
                             </LinearLayout>
+                        </LinearLayout>
 
-                        </android.support.v7.widget.CardView>
+                    </android.support.v7.widget.CardView>
 
-                        <android.support.v7.widget.CardView
-                            android:id="@+id/btn_co2"
-                            android:layout_rowWeight="1"
-                            android:layout_columnWeight="1"
-                            android:layout_margin="12dp"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="6dp">
+                </GridLayout>
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:orientation="vertical">
+                <FrameLayout
+                    android:id="@+id/frame_frag2"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_margin="8dp">
 
-                                <LinearLayout
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="8dp">
-
-                                    <ImageView
-                                        android:layout_width="20dp"
-                                        android:layout_height="20dp"
-                                        android:src="@drawable/co2icon" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="CO2"
-                                        android:textColor="@color/colorNuga"
-                                        android:textSize="18sp" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:fontFamily="@font/nanumsquarebold"
-                                        android:text="(설정,현재)"
-                                        android:textColor="#6f6f6f"
-                                        android:textSize="8sp" />
-
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:gravity="center"
-                                    android:orientation="horizontal"
-                                    android:paddingTop="16sp"
-                                    android:paddingBottom="16sp">
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:id="@+id/text_setCO2"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:gravity="top"
-                                            android:text="895"
-                                            android:textSize="24sp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text=""
-                                            android:textSize="14sp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginStart="8dp"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="984"
-                                            android:textColor="#353748"
-
-                                            android:textSize="50sp" />
-
-                                        <TextView
-                                            android:layout_width="match_parent"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:gravity="center"
-                                            android:text="ppm"
-                                            android:textSize="24sp" />
-                                    </LinearLayout>
-
-                                </LinearLayout>
-                            </LinearLayout>
-
-                        </android.support.v7.widget.CardView>
-
-                    </GridLayout>
-
-                    <FrameLayout
-                        android:id="@+id/frame_frag2"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="8dp">
-
-                    </FrameLayout>
-                </LinearLayout>
-
+                </FrameLayout>
             </LinearLayout>
-
-
         </LinearLayout>
+
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

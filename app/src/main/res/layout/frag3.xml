@@ -1,29 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/swipe_frag3"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="#ffffff"
     android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/txt_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/nanumsquarebold"
+        android:gravity="center_horizontal"
+        android:text="돈사내 원격 영상감시"
+        android:textColor="@color/colorNuga"
+        android:textSize="36sp" />
+
+    <EditText
+        android:layout_below="@id/txt_title"
+        android:id="@+id/edt_searchIP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:hint="연결할 CCTV IP주소를 입력해주세요"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_below="@id/edt_searchIP"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/nanumsquarebold"
-            android:gravity="center_horizontal"
-            android:text="안전관리"
-            android:textColor="@color/colorNuga"
-            android:textSize="36sp" />
+            android:text="CCTV 관리자 페이지 이동"
+            android:textSize="20sp" />
 
-        <VideoView
-            android:layout_width="350dp"
-            android:layout_height="350dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp" />
+        <Button
+            android:id="@+id/btn_searchHTTP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:background="@drawable/roundbutton"
+            android:text="크게 보기"
+            android:textColor="@color/colorAccent" />
 
     </LinearLayout>
-</android.support.v4.widget.SwipeRefreshLayout>
+
+
+
+    <WebView
+        android:layout_below="@+id/linearLayout"
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="#323223"
+        android:configChanges="keyboardHidden|orientation"
+        android:focusable="true"
+        android:focusableInTouchMode="true" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_below="@+id/linearLayout"
+        android:background="#ffffff"
+        android:fitsSystemWindows="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:background="#ffffff"
+        android:fitsSystemWindows="true" />
+
+</RelativeLayout>

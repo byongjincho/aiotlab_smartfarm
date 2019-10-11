@@ -13,12 +13,11 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/bg3"
+            android:background="@drawable/aiot_bg"
             android:gravity="center"
             android:orientation="vertical">
 
             <RelativeLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -129,8 +128,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
                                         android:text="맑음"
-                                        android:textColor="#191919"
-                                        android:textSize="16sp" />
+                                        android:textColor="#191919" />
                                 </LinearLayout>
 
                                 <LinearLayout
@@ -146,7 +144,7 @@
                                         android:layout_gravity="center"
                                         android:fontFamily="@font/nanumsquareb"
                                         android:text=""
-                                        android:textSize="48sp" />
+                                        android:textSize="40sp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -169,8 +167,7 @@
                                             android:layout_gravity="center"
                                             android:fontFamily="@font/nanumsquareb"
                                             android:text="(℃)"
-                                            android:textColor="#191919"
-                                            android:textSize="32sp" />
+                                            android:textColor="#191919" />
                                     </LinearLayout>
                                 </LinearLayout>
 
@@ -187,7 +184,7 @@
                                         android:fontFamily="@font/nanumsquareb"
                                         android:gravity="center"
                                         android:text=""
-                                        android:textSize="48sp" />
+                                        android:textSize="40sp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -208,8 +205,7 @@
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/nanumsquareb"
                                             android:text="(%)"
-                                            android:textColor="#191919"
-                                            android:textSize="32sp" />
+                                            android:textColor="#191919" />
 
                                     </LinearLayout>
                                 </LinearLayout>
@@ -244,45 +240,45 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textSize="12sp"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text="미세먼지 : " />
+                                    android:text="미세먼지 : "
+                                    android:textSize="12sp" />
 
                                 <TextView
-                                    android:textSize="12sp"
                                     android:id="@+id/now_big_dust"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="-" />
+                                    android:text="-"
+                                    android:textSize="12sp" />
 
                                 <TextView
-                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text=" ㎍/㎥" />
+                                    android:text=" ㎍/㎥"
+                                    android:textSize="12sp" />
 
                                 <TextView
-                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="24dp"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text="초미세먼지 : " />
+                                    android:text="초미세먼지 : "
+                                    android:textSize="12sp" />
 
                                 <TextView
-                                    android:textSize="12sp"
                                     android:id="@+id/now_small_dust"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="-" />
+                                    android:text="-"
+                                    android:textSize="12sp" />
 
                                 <TextView
-                                    android:textSize="12sp"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/nanumsquareb"
-                                    android:text=" ㎍/㎥" />
+                                    android:text=" ㎍/㎥"
+                                    android:textSize="12sp" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -320,7 +316,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:fontFamily="@font/nanumsquareb"
-                            android:text="매장 환경"
+                            android:text="생육 환경"
                             android:textColor="@color/colorNuga"
                             android:textSize="18sp" />
 
@@ -333,10 +329,10 @@
                             //온도
 
                             <ImageView
-                                android:id="@+id/getTemp"
+                                android:id="@+id/th_temp"
                                 android:layout_width="36dp"
                                 android:layout_height="match_parent"
-                                android:src="@drawable/thermoicon" />
+                                android:src="@drawable/temperature_icon" />
 
                             <TextView
                                 android:id="@+id/getTempText"
@@ -345,7 +341,6 @@
                                 android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
                                 android:text="-"
-                                android:textSize="25sp"
                                 tools:text="25.2" />
 
                             <TextView
@@ -353,17 +348,17 @@
                                 android:layout_height="30dp"
                                 android:fontFamily="@font/nanumsquarebold"
                                 android:gravity="center"
-                                android:text="℃"
-                                android:textSize="20sp" />
+                                android:text="℃" />
 
                             //조도
 
                             <ImageView
+                                android:id="@+id/th_brightness"
                                 android:layout_width="36dp"
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="8dp"
                                 android:padding="3dp"
-                                android:src="@drawable/lightblackicon" />
+                                android:src="@drawable/brightness_icon" />
 
                             <TextView
                                 android:id="@+id/getCDStext"
@@ -372,16 +367,14 @@
                                 android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
                                 android:text="-"
-                                android:textSize="25sp"
                                 tools:text="225" />
 
                             <TextView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanumsquarebold"
                                 android:gravity="center"
-                                android:text="LUX"
-                                android:textSize="14sp" />
+                                android:text="LUX" />
 
                         </LinearLayout>
 
@@ -401,7 +394,7 @@
                                 android:layout_width="36dp"
                                 android:layout_height="match_parent"
                                 android:padding="3dp"
-                                android:src="@drawable/humidityblack" />
+                                android:src="@drawable/humidity_icon" />
 
                             <TextView
                                 android:id="@+id/getHumidityText"
@@ -410,7 +403,6 @@
                                 android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
                                 android:text="-"
-                                android:textSize="25sp"
                                 tools:text="41" />
 
                             <TextView
@@ -418,8 +410,7 @@
                                 android:layout_height="30dp"
                                 android:fontFamily="@font/nanumsquarebold"
                                 android:gravity="center"
-                                android:text="%"
-                                android:textSize="20sp" />
+                                android:text="%" />
 
                             //조도
 
@@ -430,21 +421,20 @@
                                 android:src="@drawable/co2icon" />
 
                             <TextView
+                                android:id="@+id/txt_getCo2"
                                 android:layout_width="60dp"
                                 android:layout_height="50dp"
                                 android:fontFamily="@font/nanumsquareb"
                                 android:gravity="center"
                                 android:text="-"
-                                android:textSize="25sp"
                                 tools:text="1000" />
 
                             <TextView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:fontFamily="@font/nanumsquarebold"
                                 android:gravity="center"
-                                android:text="PPM"
-                                android:textSize="14sp" />
+                                android:text="PPM" />
 
                         </LinearLayout>
 
@@ -484,74 +474,96 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal">
-
-                            <VideoView
-                                android:layout_width="160dp"
-                                android:layout_height="160dp" />
-
+                            android:orientation="vertical">
 
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:layout_marginStart="16dp"
-                                android:orientation="vertical">
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <ImageView
+                                    android:id="@+id/img_guard"
+                                    android:layout_width="36dp"
                                     android:layout_height="match_parent"
-                                    android:orientation="vertical">
+                                    android:src="@drawable/blackguard" />
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/getInvasion"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    tools:text="25.2" />
 
-                                        <ImageView
-                                            android:layout_width="50dp"
-                                            android:layout_height="50dp"
-                                            android:layout_marginStart="8dp"
-                                            android:padding="3dp"
-                                            android:src="@drawable/sirenicon" />
 
-                                        <TextView
-                                            android:layout_width="60dp"
-                                            android:layout_height="50dp"
-                                            android:gravity="center"
-                                            android:text="안전"
-                                            android:textSize="25sp"
-                                            tools:text="안전" />
+                                <ImageView
+                                    android:id="@+id/img_fire"
+                                    android:layout_width="36dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="48dp"
+                                    android:src="@drawable/fire_icon" />
 
-                                    </LinearLayout>
+                                <TextView
+                                    android:id="@+id/getFire"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    tools:text="25.2" />
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:gravity="center"
-                                        android:orientation="horizontal">
+                            </LinearLayout>
 
-                                        <ImageView
-                                            android:layout_width="50dp"
-                                            android:layout_height="50dp"
-                                            android:layout_marginStart="8dp"
-                                            android:padding="3dp"
-                                            android:src="@drawable/fire" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
 
-                                        <TextView
-                                            android:layout_width="60dp"
-                                            android:layout_height="50dp"
-                                            android:gravity="center"
-                                            android:text="안전"
-                                            android:textSize="25sp"
-                                            tools:text="안전" />
+                                <ImageView
+                                    android:id="@+id/img_gas"
+                                    android:layout_width="36dp"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/gas" />
 
-                                    </LinearLayout>
-                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/getGas"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    tools:text="25.2" />
+
+
+                                <ImageView
+                                    android:layout_width="36dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="48dp"
+                                    android:src="@drawable/dust_icon" />
+
+                                <TextView
+                                    android:id="@+id/txt_insidedust"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    tools:text="25.2" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="  ㎍/㎥" />
+
                             </LinearLayout>
                         </LinearLayout>
+
                     </LinearLayout>
                 </android.support.v7.widget.CardView>
 
@@ -575,7 +587,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
-                            android:text="전력관리"
+                            android:text="데이터 관리"
                             android:textColor="@color/colorNuga"
                             android:textSize="18sp" />
 
@@ -585,11 +597,64 @@
                             android:orientation="horizontal">
 
 
-                            <TextView
-                                android:id="@+id/test"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="총 전력량" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+
+                                //온도
+
+                                <ImageView
+                                    android:id="@+id/img_todaythunder"
+                                    android:layout_width="36dp"
+                                    android:padding="3dp"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/electric_icon" />
+
+                                <TextView
+                                    android:id="@+id/txt_current1"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    tools:text="25.2" />
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:gravity="center"
+                                    android:text="W" />
+
+                                <ImageView
+                                    android:id="@+id/img_yesterdaythunder"
+                                    android:layout_width="36dp"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginStart="8dp"
+                                    android:padding="3dp"
+                                    android:src="@drawable/electric_icon" />
+
+                                <TextView
+                                    android:id="@+id/txt_yesterdaythunder"
+                                    android:layout_width="60dp"
+                                    android:layout_height="50dp"
+                                    android:fontFamily="@font/nanumsquareb"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    android:textSize="25sp"
+                                    tools:text="225" />
+
+                                <TextView
+                                    android:layout_width="30dp"
+                                    android:layout_height="30dp"
+                                    android:fontFamily="@font/nanumsquarebold"
+                                    android:gravity="center"
+                                    android:text="W" />
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
 

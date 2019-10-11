@@ -1,52 +1,45 @@
 {
   "project_info": {
-    "project_number": "868139971887",
-    "firebase_url": "https://nugaapplication19ver.firebaseio.com",
-    "project_id": "nugaapplication19ver",
-    "storage_bucket": "nugaapplication19ver.appspot.com"
+    "project_number": "1086727582786",
+    "firebase_url": "https://aiot-smartfarm.firebaseio.com",
+    "project_id": "aiot-smartfarm",
+    "storage_bucket": "aiot-smartfarm.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:868139971887:android:9273eda1f3ba80c8",
+        "mobilesdk_app_id": "1:1086727582786:android:2de7a05a74fef5b4",
         "android_client_info": {
-          "package_name": "www.yonsei.ac.nugaapplication"
+          "package_name": "kr.co.aiotlab.www"
         }
       },
       "oauth_client": [
         {
-          "client_id": "868139971887-g2tv2p4no5trriq3evfacik5fmnhprev.apps.googleusercontent.com",
+          "client_id": "1086727582786-cdveuf2vjqvsdocof1susnce1msm9krt.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "www.yonsei.ac.nugaapplication",
+            "package_name": "kr.co.aiotlab.www",
             "certificate_hash": "75302d468c19f97529ed9e908966302f348ceae8"
           }
         },
         {
-          "client_id": "868139971887-1h98sfq5lmv4mss254ekvjol4oocolh6.apps.googleusercontent.com",
+          "client_id": "1086727582786-87srjogtm5mcnsstu561qdtqs0obfb1v.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDtdawoTL-104r4eLsc4Zbim7AZqaq7dzQ"
+          "current_key": "AIzaSyCPJu6knvzXlDOEAlqkTLHiCVieHsCZzCA"
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "868139971887-1h98sfq5lmv4mss254ekvjol4oocolh6.apps.googleusercontent.com",
+              "client_id": "1086727582786-87srjogtm5mcnsstu561qdtqs0obfb1v.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
         }
       }
     }

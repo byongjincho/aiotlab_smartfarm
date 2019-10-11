@@ -2,10 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e0e0e0"
     android:orientation="vertical"
     android:gravity="center"
     android:padding="15dp">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ipaddress"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +19,7 @@
         android:layout_margin="5dp"
         android:orientation="horizontal">
 
+
         <EditText
             android:id="@+id/main_edt_ip"
             android:layout_width="wrap_content"
@@ -21,7 +27,8 @@
             android:background="@drawable/edit_round"
             android:ems="15"
             android:fontFamily="@font/nanumsquareb"
-            android:hint="IP 주소 (000.000.000.000)"
+            android:hint="IP 주소 (192.168.000.000)"
+            android:inputType="textPersonName"
             android:padding="5dp"
             android:textSize="16sp" />
     </LinearLayout>
@@ -41,6 +48,7 @@
             android:ems="10"
             android:fontFamily="@font/nanumsquareb"
             android:hint="PORT 번호"
+            android:inputType="number"
             android:padding="5dp"
             android:textSize="16sp" />
 
@@ -48,9 +56,20 @@
             android:id="@+id/main_checkButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@drawable/roundbutton"
+            android:textColor="@color/colorNuga"
             android:text="확인"
             android:layout_marginStart="5dp"/>
 
     </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/colorNuga"
+        android:layout_margin="10dp"
+        android:text="연결할 기기의 IP주소와 포트 번호를 입력해주세요"/>
 
 </LinearLayout>

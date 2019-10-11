@@ -1,15 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/linechart_sensor2"
         android:layout_width="match_parent"
+        android:layout_below="@+id/txt_nextChart"
         android:layout_height="240dp">
 
     </com.github.mikephil.charting.charts.LineChart>
+    <TextView
+        android:id="@+id/txt_nextChart"
+        android:padding="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginRight="8dp"
+        android:elevation="4dp"
+        android:background="@drawable/round_click_event"
+        android:layout_alignParentEnd="true"
+        android:text="다음"/>
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/txt_backChart"
+        android:layout_width="wrap_content"
+        android:layout_marginRight="8dp"
+        android:elevation="4dp"
+        android:background="@drawable/round_click_event"
+        android:layout_height="32dp"
+        android:text="이전"
+        android:padding="6dp"
+        android:layout_toLeftOf="@+id/txt_nextChart"/>
+
+    <TextView
+        android:id="@+id/txt_chart_date"
+        android:text="년/월/일"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

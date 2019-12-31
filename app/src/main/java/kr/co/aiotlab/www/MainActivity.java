@@ -1,19 +1,14 @@
 package kr.co.aiotlab.www;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,11 +20,8 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.telephony.SmsManager;
-import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -52,11 +44,17 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import kr.co.aiotlab.www.Main_UI.BottomFirstFragment;
+import kr.co.aiotlab.www.Main_UI.BottomFourthFragment;
+import kr.co.aiotlab.www.Main_UI.BottomSecondFragment;
+import kr.co.aiotlab.www.Main_UI.BottomSettingActivity;
+import kr.co.aiotlab.www.Main_UI.BottomThirdFragment;
+
 import static android.widget.Toast.LENGTH_SHORT;
-import static kr.co.aiotlab.www.BottomFirstFragment.getFire;
-import static kr.co.aiotlab.www.BottomFirstFragment.getHumidityText;
-import static kr.co.aiotlab.www.BottomFirstFragment.getTempText;
-import static kr.co.aiotlab.www.BottomFirstFragment.txt_insidedust;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getFire;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getHumidityText;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getTempText;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.txt_insidedust;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -117,7 +115,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         auth = FirebaseAuth.getInstance();
 
         // FCM 현재 토큰 검색
-
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -126,7 +123,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                             Log.w(TAG, "getInstanceId failed", task.getException());
                             return;
                         }
-
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
 
@@ -158,15 +154,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_View.setNavigationItemSelectedListener(this);
 
         /** MQTT init **/
-
         // mqtt 초기설정
         new Thread(new Runnable() {
+            String clientId = MqttClient.generateClientId();
+            final MqttAndroidClient client =
+                    new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
+                            clientId);
             @Override
             public void run() {
-                String clientId = MqttClient.generateClientId();
-                final MqttAndroidClient client =
-                        new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
-                                clientId);
                 try {
                     IMqttToken token = client.connect();
                     token.setActionCallback(new IMqttActionListener() {
@@ -174,7 +169,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         public void onSuccess(IMqttToken asyncActionToken) {
                             // We are connected
                             Log.d(TAG, "onSuccess: ");
-
 
                             String topic = "Sensor/Dust_DHT22";
 
@@ -231,12 +225,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
+            }
+        }).start();
 
-                //불꽃감지 상태
-                String clientId_fire = MqttClient.generateClientId();
-                final MqttAndroidClient client_fire =
-                        new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
-                                clientId_fire);
+        new Thread(new Runnable() {
+            //불꽃감지 상태
+            String clientId_fire = MqttClient.generateClientId();
+            final MqttAndroidClient client_fire =
+                    new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
+                            clientId_fire);
+            @Override
+            public void run() {
+
                 MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
                 mqttConnectOptions.setAutomaticReconnect(true);
                 mqttConnectOptions.setKeepAliveInterval(10);
@@ -303,13 +303,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         }
                     });
 
-
                 } catch (MqttException e) {
                     e.printStackTrace();
                 }
             }
         }).start();
-
 
     }
 
@@ -408,21 +406,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void jsonParse() {
-        try {
-            jsonObject = new JSONObject(jsonMQTT);
-            temp = jsonObject.getString("temperature");
-            int windchilltemp = jsonObject.getInt("windchill");
-            humi = jsonObject.getString("humidity");
-            dust = jsonObject.getInt("dust");
+        Handler handler = new Handler(Looper.getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    jsonObject = new JSONObject(jsonMQTT);
+                    temp = jsonObject.getString("temperature");
+                    int windchilltemp = jsonObject.getInt("windchill");
+                    humi = jsonObject.getString("humidity");
+                    dust = jsonObject.getInt("dust");
 
-            txt_insidedust.setText(String.valueOf(dust));
-            getTempText.setText(temp);
-            getHumidityText.setText(humi);
+                    txt_insidedust.setText(String.valueOf(dust));
+                    getTempText.setText(temp);
+                    getHumidityText.setText(humi);
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     // 불꽃감지 MQTT통신으로 받아오기

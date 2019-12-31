@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">AIOTLab의 스마트팜 솔루션</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
     <string name="open">Open</string>
     <string name="close">Close</string>

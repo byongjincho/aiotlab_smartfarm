@@ -1,7 +1,5 @@
 package kr.co.aiotlab.www;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 
 import java.io.IOException;

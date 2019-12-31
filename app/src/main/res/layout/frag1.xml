@@ -42,19 +42,15 @@
 
             </RelativeLayout>
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:alignmentMode="alignMargins"
-                android:columnCount="1"
-                android:columnOrderPreserved="false">
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_rowWeight="1"
+                    android:layout_below="@+id/relativeTitle"
                     android:layout_columnWeight="1"
                     android:layout_margin="12dp"
+                    android:id="@+id/card1"
                     app:cardCornerRadius="12dp"
                     app:cardElevation="6dp">
 
@@ -65,14 +61,14 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:gravity="center"
                             android:orientation="vertical"
                             android:padding="16dp">
 
                             <RelativeLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="wrap_content">
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -81,70 +77,73 @@
                                     android:layout_marginBottom="8dp"
                                     android:fontFamily="@font/nanumsquareb"
                                     android:text="현재 날씨"
-                                    android:textColor="@color/colorNuga"
+                                    android:textColor="@color/colorPrimary"
                                     android:textSize="18sp" />
 
-                                <TextView
-                                    android:id="@+id/searchCity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:layout_marginRight="36sp"
-                                    android:text="지역"
-                                    android:textSize="10sp" />
-
-                                <TextView
-                                    android:id="@+id/nowCity"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_alignParentRight="true"
-                                    android:layout_centerVertical="true"
-                                    android:text="지역"
-                                    android:textSize="10sp" />
 
                             </RelativeLayout>
 
                             <LinearLayout
+                                android:id="@+id/linear_weather"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
+                                android:layout_height="145dp"
+                                android:background="#ffffff"
+                                android:gravity="center"
                                 android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:layout_width="0dp"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="1"
+                                    android:layout_marginStart="16dp"
+                                    android:gravity="center"
                                     android:orientation="vertical">
 
-                                    <ImageView
-                                        android:id="@+id/weather_icon"
-                                        android:layout_width="80dp"
-                                        android:layout_height="80sp"
-                                        android:layout_gravity="center" />
+                                    <android.support.v7.widget.CardView
+                                        android:id="@+id/card_weather"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginTop="8dp"
+                                        android:layout_marginBottom="4dp"
+                                        android:background="#eeeeee"
+                                        app:cardCornerRadius="8dp"
+                                        app:cardElevation="2dp"
+                                        app:contentPadding="8dp">
+
+                                        <ImageView
+                                            android:id="@+id/img_weather"
+                                            android:layout_width="70dp"
+                                            android:layout_height="70dp" />
+
+                                    </android.support.v7.widget.CardView>
 
                                     <TextView
-                                        android:id="@+id/weather_state"
+                                        android:id="@+id/txt_weather_information"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_gravity="center"
-                                        android:text="맑음"
-                                        android:textColor="#191919" />
+                                        android:layout_marginTop="4dp"
+                                        android:text=""
+                                        android:textColor="#000000" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content" />
+
                                 </LinearLayout>
 
                                 <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:id="@+id/nowTemperature"
+                                        android:id="@+id/txt_date"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:layout_gravity="center"
-                                        android:fontFamily="@font/nanumsquareb"
-                                        android:text=""
-                                        android:textSize="40sp" />
+                                        android:layout_gravity="end"
+                                        android:textColor="#000000"
+                                        android:textSize="12dp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -153,38 +152,18 @@
                                         android:orientation="horizontal">
 
                                         <TextView
+                                            android:id="@+id/txt_temperature"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:text="온도"
-                                            android:textColor="#191919"
-                                            android:textSize="16sp" />
+                                            android:textColor="#000000"
+                                            android:textSize="46sp" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:layout_gravity="center"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:text="(℃)"
-                                            android:textColor="#191919" />
+                                            android:text=" ℃"
+                                            android:textColor="#000000" />
                                     </LinearLayout>
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:orientation="vertical">
-
-                                    <TextView
-                                        android:id="@+id/nowHumidity"
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:fontFamily="@font/nanumsquareb"
-                                        android:gravity="center"
-                                        android:text=""
-                                        android:textSize="40sp" />
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -192,27 +171,70 @@
                                         android:gravity="center"
                                         android:orientation="horizontal">
 
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="12dp"
+                                            android:layout_gravity="center"
+                                            android:src="@drawable/humidity_black_icon" />
+
                                         <TextView
+                                            android:id="@+id/txt_humidity"
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:text="습도 "
-                                            android:textColor="#191919"
-                                            android:textSize="16sp" />
+                                            android:layout_gravity="center"
+                                            android:layout_marginStart="4dp"
+                                            android:textColor="#000000"
+
+                                            android:textSize="12dp" />
 
                                         <TextView
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/nanumsquareb"
-                                            android:text="(%)"
-                                            android:textColor="#191919" />
+                                            android:layout_gravity="center"
+
+                                            android:text=" % "
+                                            android:textColor="#000000"
+                                            android:textSize="8dp" />
+
+                                        <ImageView
+                                            android:layout_width="12dp"
+                                            android:layout_height="12dp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginStart="16dp"
+                                            android:src="@drawable/wind_black_icon" />
+
+                                        <TextView
+                                            android:id="@+id/txt_wind"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+                                            android:layout_marginStart="4dp"
+                                            android:textColor="#000000"
+
+                                            android:textSize="12dp" />
+
+                                        <TextView
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_gravity="center"
+
+                                            android:text=" ㎧ "
+                                            android:textColor="#000000"
+                                            android:textSize="8dp" />
 
                                     </LinearLayout>
-                                </LinearLayout>
 
+                                    <TextView
+                                        android:id="@+id/txt_location"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="end"
+                                        android:layout_marginTop="8dp"
+                                        android:textColor="#000000"
+                                        android:textSize="10sp" />
+                                </LinearLayout>
 
                             </LinearLayout>
-
 
                         </LinearLayout>
 
@@ -662,9 +684,6 @@
 
 
                 </android.support.v7.widget.CardView>
-
-
-            </GridLayout>
 
         </LinearLayout>
 

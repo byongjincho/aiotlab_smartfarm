@@ -10,16 +10,10 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -28,7 +22,6 @@ import java.net.Socket;
 
 import androidx.annotation.Nullable;
 
-import static android.widget.Toast.LENGTH_SHORT;
 import static kr.co.aiotlab.www.App.CHANNEL_ID;
 
 public class AppService2 extends Service {

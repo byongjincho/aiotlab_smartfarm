@@ -1,14 +1,11 @@
 package kr.co.aiotlab.www;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -27,14 +24,13 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.internal.wire.MqttConnect;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.annotation.Nullable;
 
 import static kr.co.aiotlab.www.App.CHANNEL_ID;
-import static kr.co.aiotlab.www.BottomFirstFragment.getFire;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getFire;
 
 public class AppService_push extends Service {
     public static final String TAG = "Service_push";

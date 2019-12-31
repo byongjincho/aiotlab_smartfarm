@@ -2,7 +2,6 @@ package kr.co.aiotlab.www;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;

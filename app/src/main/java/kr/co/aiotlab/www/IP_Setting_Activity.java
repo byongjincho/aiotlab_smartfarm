@@ -1,6 +1,5 @@
 package kr.co.aiotlab.www;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;

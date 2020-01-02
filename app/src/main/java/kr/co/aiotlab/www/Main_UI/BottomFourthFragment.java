@@ -68,7 +68,7 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
         spinner_month = month;
 
         initSpinner();
-        /**
+        /*
 
         swipe_frag4 = view.findViewById(R.id.swipe_frag4);
 
@@ -241,12 +241,16 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
 
         spinner_date_month.setSelection(Integer.parseInt(month) - 1);
 
+        spinner_date_year.setSelection(1);
+
         spinner_date_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("test", "onItemSelected: " + parent.getItemAtPosition(position));
-                spinner_year = String.valueOf(parent.getItemAtPosition(position));
 
+                spinner_year = parent.getItemAtPosition(position).toString();
+
+                Log.d("test", spinner_year + "onItemSelected2: " + parent.getItemAtPosition(position));
             }
 
             @Override
@@ -259,10 +263,12 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Log.d("test", "onItemSelected: " + parent.getItemAtPosition(position));
-                spinner_month = String.valueOf(parent.getItemAtPosition(position));
-                if (Integer.parseInt(spinner_month ) < 10) {
+
+                spinner_month = parent.getItemAtPosition(position).toString();
+                if (Integer.parseInt(spinner_month) < 10) {
                     spinner_month = "0" + spinner_month;
                 }
+
             }
 
             @Override
@@ -294,6 +300,8 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
         year = yearData;
         month = monthData;
         day = dayData;
+
+
     }
 
 }

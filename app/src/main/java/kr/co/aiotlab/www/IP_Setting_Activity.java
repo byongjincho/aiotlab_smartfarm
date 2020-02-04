@@ -2,9 +2,10 @@ package kr.co.aiotlab.www;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.EditText;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class IP_Setting_Activity extends AppCompatActivity {
 

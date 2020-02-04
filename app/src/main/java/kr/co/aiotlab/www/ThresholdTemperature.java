@@ -30,13 +30,13 @@ public class ThresholdTemperature extends Activity {
 
 
         //팝업창 크기 설정
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width/1.9), (int) (height/2.8));
+//        DisplayMetrics dm = new DisplayMetrics();
+//        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//
+//        int width = dm.widthPixels;
+//        int height = dm.heightPixels;
+//
+//        getWindow().setLayout((int) (width/1.9), (int) (height/2.8));
 
         edt_tempHigh = findViewById(R.id.edt_tempHigh);
         edt_tempLow = findViewById(R.id.edt_tempLow);

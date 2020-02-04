@@ -1,20 +1,20 @@
 package kr.co.aiotlab.www.Main_UI;
 
-import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.PieChart;
@@ -23,33 +23,49 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import kr.co.aiotlab.www.LineChart.LinechartSensor1;
-import kr.co.aiotlab.www.LineChart.LinechartSensor10;
-import kr.co.aiotlab.www.LineChart.LinechartSensor2;
-import kr.co.aiotlab.www.LineChart.LinechartSensor3;
-import kr.co.aiotlab.www.LineChart.LinechartSensor4;
-import kr.co.aiotlab.www.LineChart.LinechartSensor5;
-import kr.co.aiotlab.www.LineChart.LinechartSensor6;
-import kr.co.aiotlab.www.LineChart.LinechartSensor7;
-import kr.co.aiotlab.www.LineChart.LinechartSensor8;
-import kr.co.aiotlab.www.LineChart.LinechartSensor9;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import kr.co.aiotlab.www.LineChart.LineChart_Temperature_Minute;
+import kr.co.aiotlab.www.LineChart.Linechart_Calorie_Hour;
+import kr.co.aiotlab.www.LineChart.Linechart_Temperature_Hour;
+import kr.co.aiotlab.www.LineChart.Linechart_Humidity_Minute;
+import kr.co.aiotlab.www.LineChart.Linechart_Humidity_Hour;
+import kr.co.aiotlab.www.LineChart.Linechart_Brightness_Minute;
+import kr.co.aiotlab.www.LineChart.Linechart_Brightness_Hour;
+import kr.co.aiotlab.www.LineChart.Linechart_Power_Minute;
+import kr.co.aiotlab.www.LineChart.Linechart_Power_Hour;
+import kr.co.aiotlab.www.LineChart.Linechart_Calorie_Minute;
 import kr.co.aiotlab.www.R;
 
 
-public class BottomFourthFragment extends Fragment implements AdapterView.OnItemSelectedListener {
+public class BottomFourthFragment extends Fragment implements AdapterView.OnItemSelectedListener, DatePickerDialog.OnDateSetListener {
 
-    private TextView txt_time;
+    // 시간 표시
+    public static TextView txt_month, txt_year, txt_day;
+    private String monthString, yearString, dayString;
+
     private Date date;
     private SwipeRefreshLayout swipe_frag4;
     private PieChart mPiechart;
-    private Spinner sensor_select, spinner_date_month, spinner_date_year;
-    public static String spinner_month, spinner_year;
+    private Spinner sensor_select;
     private String time, year, month, day;
+    // DatePicker
+    DatePickerDialog datePickerDialog;
+
+    //
+    private Button btn_nowTime;
+    private RadioGroup radioGroup;
+    private RadioButton radioButton_minute, radioButton_hour;
+
+
+    private ImageButton imgbtn_calendar;
 
     public static BottomFourthFragment newInstance() {
         BottomFourthFragment f = new BottomFourthFragment();
@@ -58,16 +74,58 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
 
     View view;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag4, container, false);
-        // 스피너 날짜 설정
-        getNowTime();
-        spinner_year = year;
-        spinner_month = month;
 
-        initSpinner();
+        txt_year = view.findViewById(R.id.txt_year_frag4);
+        txt_month = view.findViewById(R.id.txt_month_frag4);
+        txt_day = view.findViewById(R.id.txt_day_frag4);
+
+        btn_nowTime = view.findViewById(R.id.btn_nowTime_frag4);
+        radioGroup = view.findViewById(R.id.radioGroup_frag4);
+        radioButton_minute = view.findViewById(R.id.radioBtn_minute_frag4);
+        radioButton_hour = view.findViewById(R.id.radioBtn_hour_frag4);
+
+        getNowTime();
+        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        yearString = sharedPreferences.getString("YEAR", year);
+        monthString = sharedPreferences.getString("MONTH", month);
+        dayString = sharedPreferences.getString("DAY", day);
+
+        txt_year.setText(yearString);
+        txt_month.setText(monthString);
+        txt_day.setText(dayString);
+
+        // 현재 시간 클릭시 동작 구현
+        btn_nowTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getNowTime();
+                saveDateYear(year);
+                saveDateMonth(month);
+                saveDateDay(day);
+                refreshFragment();
+            }
+        });
+
+
+        imgbtn_calendar = view.findViewById(R.id.imgbtn_calendar);
+        imgbtn_calendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(getContext(), DatePicker_Fragment4.class);
+//                startActivity(intent);
+
+                // DatePicker Dialog
+                datePickerDialog = DatePickerDialog.newInstance(BottomFourthFragment.this, Integer.parseInt(year), Integer.parseInt(month) - 1, Integer.parseInt(day));
+                datePickerDialog.setThemeDark(false);
+                datePickerDialog.showYearPickerFirst(false);
+                datePickerDialog.setTitle("원하는 날짜를 선택해주세요");
+                datePickerDialog.show(getActivity().getFragmentManager(), "DatePickerDialog");
+
+            }
+        });
         /*
 
         swipe_frag4 = view.findViewById(R.id.swipe_frag4);
@@ -145,14 +203,59 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
         sensor_select.setAdapter(adapter);
         sensor_select.setOnItemSelectedListener(this);
 
+
 //        /**쓰레스 시작*/
 //        BackThread thread = new BackThread();
 //        thread.setDaemon(true);
 //        thread.start();
 
+        SharedPreferences radioState = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        if (radioState.getString("RADIOBUTTON", "MINUTE").equals("MINUTE"))
+            radioButton_minute.setChecked(true);
+        else if (radioState.getString("RADIOBUTTON", "MINUTE").equals("HOUR"))
+            radioButton_hour.setChecked(true);
+
+        /**
+         * 라디오 그룹에서 버튼 선택
+         */
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch (checkedId) {
+                    case R.id.radioBtn_minute_frag4:
+                        if (sensor_select.getSelectedItemId() == 0)
+                            showFragment2(LineChart_Temperature_Minute.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 1)
+                            showFragment2(Linechart_Humidity_Minute.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 2)
+                            showFragment2(Linechart_Brightness_Minute.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 3)
+                            showFragment2(Linechart_Power_Minute.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 4)
+                            showFragment2(Linechart_Calorie_Minute.newInstance());
+                        // 라디오버튼 상태 저장
+                        saveRadioGroupState("MINUTE");
+                        break;
+                    case R.id.radioBtn_hour_frag4:
+                        if (sensor_select.getSelectedItemId() == 0)
+                            showFragment2(Linechart_Temperature_Hour.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 1)
+                            showFragment2(Linechart_Humidity_Hour.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 2)
+                            showFragment2(Linechart_Brightness_Hour.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 3)
+                            showFragment2(Linechart_Power_Hour.newInstance());
+                        else if (sensor_select.getSelectedItemId() == 4)
+                            showFragment2(Linechart_Calorie_Hour.newInstance());
+                        // 라디오버튼 상태 저장
+                        saveRadioGroupState("HOUR");
+                        break;
+                }
+            }
+        });
+
         return view;
     }
-
 
     /**
      * 스피너 선택
@@ -160,39 +263,48 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-        switch (position) {
-            // 맨 위부터 순서대로 0 ~.. 센서1 선택
-            case 0:
-                showFragment2(LinechartSensor1.newInstance());
-                break;
-            case 1:
-                showFragment2(LinechartSensor2.newInstance());
-                break;
-            case 2:
-                showFragment2(LinechartSensor3.newInstance());
-                break;
-            case 3:
-                showFragment2(LinechartSensor4.newInstance());
-                break;
-            case 4:
-                showFragment2(LinechartSensor5.newInstance());
-                break;
-            case 5:
-                showFragment2(LinechartSensor6.newInstance());
-                break;
-            case 6:
-                showFragment2(LinechartSensor7.newInstance());
-                break;
-            case 7:
-                showFragment2(LinechartSensor8.newInstance());
-                break;
-            case 8:
-                showFragment2(LinechartSensor9.newInstance());
-                break;
-            case 9:
-                showFragment2(LinechartSensor10.newInstance());
-                break;
+        if (radioButton_minute.isChecked()) {
+            switch (position) {
+                // 맨 위부터 순서대로 0 ~.. 센서1 선택
+                case 0:
+                    showFragment2(LineChart_Temperature_Minute.newInstance());
+                    break;
+                case 1:
+                    showFragment2(Linechart_Humidity_Minute.newInstance());
+                    break;
+                case 2:
+                    showFragment2(Linechart_Brightness_Minute.newInstance());
+                    break;
+                case 3:
+                    showFragment2(Linechart_Power_Minute.newInstance());
+                    break;
+                case 4:
+                    showFragment2(Linechart_Calorie_Minute.newInstance());
+                    break;
+
+            }
+        } else if (radioButton_hour.isChecked()) {
+            switch (position) {
+                // 맨 위부터 순서대로 0 ~.. 센서1 선택
+                case 0:
+                    showFragment2(Linechart_Temperature_Hour.newInstance());
+                    break;
+                case 1:
+                    showFragment2(Linechart_Humidity_Hour.newInstance());
+                    break;
+                case 2:
+                    showFragment2(Linechart_Brightness_Hour.newInstance());
+                    break;
+                case 3:
+                    showFragment2(Linechart_Power_Hour.newInstance());
+                    break;
+                case 4:
+                    showFragment2(Linechart_Calorie_Hour.newInstance());
+                    break;
+
+            }
         }
+
 
     }
 
@@ -235,51 +347,7 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
 //        }
 //    };
 
-    void initSpinner() {
-        spinner_date_month = view.findViewById(R.id.spinnner_date_month);
-        spinner_date_year = view.findViewById(R.id.spinnner_date_year);
-
-        spinner_date_month.setSelection(Integer.parseInt(month) - 1);
-
-        spinner_date_year.setSelection(1);
-
-        spinner_date_year.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("test", "onItemSelected: " + parent.getItemAtPosition(position));
-
-                spinner_year = parent.getItemAtPosition(position).toString();
-
-                Log.d("test", spinner_year + "onItemSelected2: " + parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(), "연도를 선택해주세요", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        spinner_date_month.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("test", "onItemSelected: " + parent.getItemAtPosition(position));
-
-                spinner_month = parent.getItemAtPosition(position).toString();
-                if (Integer.parseInt(spinner_month) < 10) {
-                    spinner_month = "0" + spinner_month;
-                }
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(getContext(), "월을 선택해주세요", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-    }
-
-    private void getNowTime(){
+    private void getNowTime() {
         //현재 시간
         long now = System.currentTimeMillis();
         date = new Date(now);
@@ -300,8 +368,76 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
         year = yearData;
         month = monthData;
         day = dayData;
+    }
 
+    // DatePicker 선택했을 때
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        int month = monthOfYear + 1;
+        int day = dayOfMonth;
+        String m;
+        String y = String.valueOf(year);
+        String d;
+
+        saveDateYear(y);
+
+        if (month < 10) {
+            m = "0" + month;
+            saveDateMonth(m);
+        } else {
+            m = String.valueOf(month);
+            saveDateMonth(m);
+        }
+        if (day < 10) {
+            d = "0" + day;
+            saveDateDay(d);
+        } else {
+            d = String.valueOf(day);
+            saveDateDay(d);
+        }
+
+        refreshFragment();
+    }
+
+    private void refreshFragment() {
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
 
     }
 
+    private void saveDateYear(String yearString) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("YEAR", yearString);
+        editor.apply();
+    }
+
+    private void saveDateMonth(String monthString) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (Integer.parseInt(yearString) < 10) {
+            editor.putString("MONTH", "0" + monthString);
+        } else {
+            editor.putString("MONTH", monthString);
+        }
+        editor.apply();
+    }
+
+    private void saveDateDay(String dayString) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (Integer.parseInt(yearString) < 10) {
+            editor.putString("DAY", "0" + dayString);
+        } else {
+            editor.putString("DAY", dayString);
+        }
+        editor.apply();
+    }
+    private void saveRadioGroupState(String radioState) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("RADIOBUTTON", radioState);
+        editor.apply();
+    }
 }

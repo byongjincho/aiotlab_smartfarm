@@ -1,90 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="16dp"
-                    android:fontFamily="@font/nanumsquarebold"
-                    android:text="데이터 관리"
-                    android:textColor="@color/colorNuga"
-                    android:textSize="36sp" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:gravity="end"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/nanumsquarebold"
+                android:text="데이터 관리"
+                android:textColor="@color/colorNuga"
+                android:textSize="36sp" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_nowTime_frag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/roundbutton"
+                android:text="현재 날짜" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup_frag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
-                <Spinner
-                    android:entries="@array/연"
-                    android:id="@+id/spinnner_date_year"
-                    android:layout_gravity="start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
+                <RadioButton
+                    android:id="@+id/radioBtn_minute_frag4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="년"/>
-                <Spinner
-                    android:entries="@array/월"
-                    android:id="@+id/spinnner_date_month"
-                    android:layout_gravity="start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-                <TextView
+                    android:layout_marginEnd="8dp"
+                    android:text="분 단위" />
+
+                <RadioButton
+                    android:id="@+id/radioBtn_hour_frag4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="월"/>
+                    android:text="시간 단위" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+            </RadioGroup>
 
-                <TextView
-                    android:id="@+id/txt_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <Spinner
-                    android:id="@+id/sensor_select"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"></Spinner>
-            </LinearLayout>
-
-            <FrameLayout
-                android:id="@+id/frame_linechart"
-                android:layout_width="match_parent"
-                android:layout_height="280dp">
-
-            </FrameLayout>
-
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/piechart"
-                android:layout_width="match_parent"
-                android:layout_height="360dp">
-
-            </com.github.mikephil.charting.charts.PieChart>
-
+            <ImageButton
+                android:id="@+id/imgbtn_calendar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_calender_24dp" />
 
         </LinearLayout>
-    </ScrollView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_year_frag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginEnd="8sp"
+                android:text="2020"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="년"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/txt_month_frag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8sp"
+                android:text="4"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="월"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/txt_day_frag4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="8sp"
+                android:text="4"
+                android:textColor="#000000" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="일"
+                android:textColor="#000000" />
+
+            <Spinner
+                android:id="@+id/sensor_select"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/frame_linechart"
+            android:layout_width="match_parent"
+            android:layout_height="280dp">
+
+        </FrameLayout>
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/piechart"
+            android:layout_width="match_parent"
+            android:layout_height="360dp">
+
+        </com.github.mikephil.charting.charts.PieChart>
+
+
+    </LinearLayout>
+</ScrollView>

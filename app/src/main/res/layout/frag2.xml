@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/swipe_frag2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -47,7 +48,7 @@
                     android:columnCount="2"
                     android:columnOrderPreserved="true">
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/btn_thermo"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
@@ -127,10 +128,10 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/btn_brightness"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
@@ -226,9 +227,9 @@
                         </LinearLayout>
 
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/btn_humidity"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
@@ -310,10 +311,10 @@
                         </LinearLayout>
 
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/btn_dust"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
@@ -408,9 +409,9 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                    <android.support.v7.widget.CardView
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/btn_co2"
                         android:layout_rowWeight="1"
                         android:layout_columnWeight="1"
@@ -506,7 +507,7 @@
                             </LinearLayout>
                         </LinearLayout>
 
-                    </android.support.v7.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
                 </GridLayout>
 
@@ -521,4 +522,4 @@
         </LinearLayout>
 
     </ScrollView>
-</android.support.v4.widget.SwipeRefreshLayout>
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

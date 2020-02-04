@@ -5,15 +5,25 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
+
+import androidx.core.app.NotificationCompat;
+
 import android.util.Log;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.signature.StringSignature;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
@@ -44,6 +54,7 @@ public class AppService_push extends Service {
     String clientId = MqttClient.generateClientId();
     Notification notification_fire;
     Notification notification;
+    PendingIntent pendingIntent;
 
     @Nullable
     @Override
@@ -65,7 +76,7 @@ public class AppService_push extends Service {
                     public void run() {
 // Service 실행중이면 상태표시바에 어떻게 보일지 표시해주는 세팅
                         Intent notificationIntent = new Intent(getApplicationContext(), MainActivity.class);
-                        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, notificationIntent, 0);
+                        pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, notificationIntent, 0);
 
                         notification = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
                                 .setContentTitle("푸시알람이 실행중입니다.")
@@ -73,13 +84,6 @@ public class AppService_push extends Service {
                                 .setSmallIcon(R.drawable.aiotlablogo)
                                 .build();
                         startForeground(1, notification);
-
-                        //불꽃감지 상태
-                        notification_fire = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                                .setContentTitle("불꽃이 감지되었습니다!")
-                                .setContentIntent(pendingIntent)
-                                .setSmallIcon(R.drawable.fire)
-                                .build();
 
                         String clientId_fire = MqttClient.generateClientId();
                         final MqttAndroidClient client_fire =
@@ -173,7 +177,6 @@ public class AppService_push extends Service {
                                 @Override
                                 public void onSuccess(IMqttToken asyncActionToken) {
                                     // We are connected
-
                                     int qos = 1;
                                     try {
                                         IMqttToken subToken = client.subscribe("Sensor/Dust_DHT22", qos);
@@ -287,6 +290,25 @@ public class AppService_push extends Service {
 
             } else {
                 //불꽃 검지됨
+                Glide.with(getApplicationContext())
+                        .load("http://222.113.57.108:8080/picture/1/current/")
+                        .asBitmap()
+                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .skipMemoryCache(true)
+                        .into(new SimpleTarget<Bitmap>() {
+                            @Override
+                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+//불꽃감지 상태
+                                notification_fire = new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
+                                        .setContentTitle("불꽃이 감지되었습니다!")
+                                        .setContentIntent(pendingIntent)
+                                        .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(resource))
+                                        .setSmallIcon(R.drawable.fire)
+                                        .build();
+
+                            }
+                        });
+                 new SocketProtocol_Main().execute("7");
                 startForeground(1, notification_fire);
 
                 Intent fireAlert = new Intent(getApplicationContext(), Activity_FireAlert.class);

@@ -10,7 +10,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.database.FirebaseDatabase;
@@ -21,6 +20,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
 
 import static kr.co.aiotlab.www.App.CHANNEL_ID;
 

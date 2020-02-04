@@ -1,6 +1,8 @@
 package kr.co.aiotlab.www;
 
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -16,10 +18,9 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
 
     @Override
     protected Void doInBackground(String... strings) {
-
         IP_ADRESS = SensorControlActivity.txt_ip.getText().toString();
         PORT = Integer.parseInt(SensorControlActivity.txt_port.getText().toString());
-
+        Log.d("!!!", "doInBackground: " + IP_ADRESS + PORT);
         try {
             try {
                 Socket socket = new Socket(IP_ADRESS, PORT);
@@ -37,5 +38,9 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
         return null;
     }
 
+    @Override
+    protected void onProgressUpdate(Void... values) {
+        super.onProgressUpdate(values);
 
+    }
 }

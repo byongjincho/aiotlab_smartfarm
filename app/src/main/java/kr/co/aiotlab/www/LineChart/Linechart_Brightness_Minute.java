@@ -2,13 +2,11 @@ package kr.co.aiotlab.www.LineChart;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,20 +34,21 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import kr.co.aiotlab.www.R;
 
-import static kr.co.aiotlab.www.Main_UI.BottomFourthFragment.spinner_month;
-import static kr.co.aiotlab.www.Main_UI.BottomFourthFragment.spinner_year;
+import static kr.co.aiotlab.www.Main_UI.BottomFourthFragment.txt_day;
 
-public class LinechartSensor5 extends Fragment implements View.OnClickListener {
+public class Linechart_Brightness_Minute extends Fragment implements View.OnClickListener {
 
     private LineChart mChart;
     private View view;
     private FirebaseDatabase mDatabase;
     private Date date;
     private static final String GETVALUE = "Bright";
-    private TextView txt_backChart, txt_nextChart, txt_chart_date;
+    private TextView txt_backChart, txt_nextChart;
     int up_limit_num, down_limit_num;
     private LimitLine limit_up, limit_down;
 
@@ -57,9 +56,11 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
     String yearData, monthData, dayData, hourData, minuteData;
     DatabaseReference humidRef;
     ChildEventListener childEventListener;
+    // 저장된 날짜 담아오기
+    private String yearString, monthString, dayString;
 
-    public static LinechartSensor5 newInstance() {
-        LinechartSensor5 f = new LinechartSensor5();
+    public static Linechart_Brightness_Minute newInstance() {
+        Linechart_Brightness_Minute f = new Linechart_Brightness_Minute();
         return f;
     }
 
@@ -73,14 +74,17 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
         mChart.setNoDataTextColor(Color.BLUE);
         mDatabase = FirebaseDatabase.getInstance();
 
-        txt_chart_date = view.findViewById(R.id.txt_chart_date);
         txt_nextChart = view.findViewById(R.id.txt_nextChart);
         txt_backChart = view.findViewById(R.id.txt_backChart);
         txt_nextChart.setOnClickListener(this);
         txt_backChart.setOnClickListener(this);
 
         getNowTime();
-        txt_chart_date.setText(spinner_year + "년 " + spinner_month + "월 " + day + "일");
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        yearString = sharedPreferences.getString("YEAR", year);
+        monthString = sharedPreferences.getString("MONTH", month);
+        dayString = sharedPreferences.getString("DAY", day);
+
         showLineChartData();
 
         // 상한선 설정
@@ -121,39 +125,52 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
         humidRef.removeEventListener(childEventListener);
         switch (v.getId()) {
             case R.id.txt_backChart:
-                day = String.valueOf(Integer.parseInt(day) - 1);
-                if (Integer.parseInt(day) < 10) {
-                    day = "0" + day;
+                dayString = String.valueOf(Integer.parseInt(dayString) - 1);
+                if (Integer.parseInt(dayString) < 10) {
+                    dayString = "0" + dayString;
                 }
 
-                if (Integer.parseInt(day) <= 1) {
+                if (Integer.parseInt(dayString) <= 1) {
                     txt_backChart.setVisibility(View.INVISIBLE);
                 } else {
                     txt_nextChart.setVisibility(View.VISIBLE);
                 }
-
-                txt_chart_date.setText(spinner_year + "년 " + spinner_month + "월 " + day + "일");
+// TextView 일자 변경
+                txt_day.setText(dayString);
+                // SharedPreference에 일자 저장
+                saveDateDay(dayString);
                 showLineChartData();
                 break;
             case R.id.txt_nextChart:
-                day = String.valueOf(Integer.parseInt(day) + 1);
-                if (Integer.parseInt(day) < 10) {
-                    day = "0" + day;
+                dayString = String.valueOf(Integer.parseInt(dayString) + 1);
+                if (Integer.parseInt(dayString) < 10) {
+                    dayString = "0" + dayString;
                 }
 
-                if (Integer.parseInt(day) > 30) {
+                if (Integer.parseInt(dayString) > 30) {
                     txt_nextChart.setVisibility(View.INVISIBLE);
                 } else {
 
                     txt_backChart.setVisibility(View.VISIBLE);
                 }
-
-                txt_chart_date.setText(spinner_year + "년 " + spinner_month + "월 " + day + "일");
+// TextView 일자 변경
+                txt_day.setText(dayString);
+                // SharedPreference에 일자 저장
+                saveDateDay(dayString);
                 showLineChartData();
                 break;
         }
     }
-
+    private void saveDateDay(String dayString) {
+        SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences("TimeSave", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (Integer.parseInt(yearString) < 10) {
+            editor.putString("DAY", "0" + dayString);
+        } else {
+            editor.putString("DAY", dayString);
+        }
+        editor.apply();
+    }
     //setting에서 설정한 CDS 제한 값 가져오기
     private int getCDS() {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
@@ -184,7 +201,7 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                humidRef = mDatabase.getReference("Bright_minute_" + spinner_year + spinner_month + day);
+                humidRef = mDatabase.getReference("Bright_minute_" + yearString + monthString + dayString);
                 final ArrayList<Float> bright_data = new ArrayList<>();
 
                 final ArrayList<Float> humid_data = new ArrayList<>();
@@ -193,81 +210,85 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
                 childEventListener = new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
-                        Map<String, Object> data = (Map<String, Object>) dataSnapshot.getValue();
-
-                        String timestamp = data.get("timestamp").toString();
-                        String timestamp_time = timestamp.substring(8, 10) + ":" + timestamp.substring(10, 12);
-                        xEntry.add(timestamp_time);
-
                         try {
-                            float humid = Float.parseFloat(data.get(GETVALUE).toString());
-                            humid_data.add(humid);
-                        } catch (NumberFormatException e) {
-                            Toast.makeText(getContext(), "비정상적인 값 감지", Toast.LENGTH_SHORT).show();
-                        }
 
-                        ArrayList<Entry> yData = new ArrayList<>();
+                            Map<String, Object> data = (Map<String, Object>) dataSnapshot.getValue();
 
-                        //a의 data로 a는 value값을 int형으로 변환한 것. value는 데이터가 바뀔 때의 값으로 업데이트 될 때마다 값이 나온다.
-                        for (int j = 0; j < humid_data.size(); j++) {
-                            yData.add(new Entry(j, humid_data.get(j)));
-                        }
+                            String timestamp = data.get("timestamp").toString();
+                            String timestamp_time = timestamp.substring(8, 10) + ":" + timestamp.substring(10, 12);
+                            xEntry.add(timestamp_time);
 
-                        ArrayList<ILineDataSet> dataSets = new ArrayList<>();
-
-                        float total = 0;
-                        //a의 data로 a는 value값을 int형으로 변환한 것. value는 데이터가 바뀔 때의 값으로 업데이트 될 때마다 값이 나온다.
-                        for (int j = 0; j < bright_data.size(); j++) {
-                            yData.add(new Entry(j, bright_data.get(j)));
-
-                            total = total + bright_data.get(j);
-                        }
-
-                        float average = total / bright_data.size();
-
-                        LineDataSet set1 = new LineDataSet(yData, "평균 조도 = " + average + "lux");
-                        set1.setFillAlpha(110);
-                        set1.setColor(Color.BLACK);
-                        set1.setLineWidth(3f);
-
-                        dataSets.add(set1);
-
-                        LineData data2 = new LineData(dataSets);
-
-                        mChart.animateX(1000);
-                        //      mChart.setOnChartGestureListener(SecondFragmentThermo.this);
-                        //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
-
-                        mChart.setData(data2);
-
-                        mChart.setDragEnabled(true);
-                        mChart.setScaleEnabled(true);
-
-                        // 오른쪽 와이축 없앰
-                        mChart.getAxisRight().setEnabled(false);
-
-                        XAxis xAxis = mChart.getXAxis();
-                        xAxis.setGranularity(1f);
-                        xAxis.setValueFormatter(new IAxisValueFormatter() {
-                            @Override
-                            public String getFormattedValue(float value, AxisBase axis) {
-                                String val = null;
-                                try {
-                                    val = xEntry.get((int) value);
-                                } catch (IndexOutOfBoundsException e) {
-                                    axis.setGranularityEnabled(false);
-                                }
-                                return val;
+                            try {
+                                float humid = Float.parseFloat(data.get(GETVALUE).toString());
+                                humid_data.add(humid);
+                            } catch (NumberFormatException e) {
+                                Toast.makeText(getContext(), "비정상적인 값 감지", Toast.LENGTH_SHORT).show();
                             }
-                        });
-                        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
 
-                        YAxis leftAxis = mChart.getAxisLeft();
+                            ArrayList<Entry> yData = new ArrayList<>();
 
-                        leftAxis.setAxisMaximum(1000f);               //보여지는 최대
-                        leftAxis.setAxisMinimum(0f);
+                            //a의 data로 a는 value값을 int형으로 변환한 것. value는 데이터가 바뀔 때의 값으로 업데이트 될 때마다 값이 나온다.
+                            for (int j = 0; j < humid_data.size(); j++) {
+                                yData.add(new Entry(j, humid_data.get(j)));
+                            }
 
+                            ArrayList<ILineDataSet> dataSets = new ArrayList<>();
 
+                            float total = 0;
+                            //a의 data로 a는 value값을 int형으로 변환한 것. value는 데이터가 바뀔 때의 값으로 업데이트 될 때마다 값이 나온다.
+                            for (int j = 0; j < bright_data.size(); j++) {
+                                yData.add(new Entry(j, bright_data.get(j)));
+
+                                total = total + bright_data.get(j);
+                            }
+
+                            float average = total / bright_data.size();
+
+                            LineDataSet set1 = new LineDataSet(yData, "평균 조도 = " + average + "lux");
+                            set1.setFillAlpha(110);
+                            set1.setColor(Color.BLACK);
+                            set1.setLineWidth(3f);
+
+                            dataSets.add(set1);
+
+                            LineData data2 = new LineData(dataSets);
+
+                            mChart.animateX(1000);
+                            //      mChart.setOnChartGestureListener(SecondFragmentThermo.this);
+                            //      mChart.setOnChartValueSelectedListener(SecondFragmentThermo.this);
+
+                            mChart.setData(data2);
+
+                            mChart.setDragEnabled(true);
+                            mChart.setScaleEnabled(true);
+
+                            // 오른쪽 와이축 없앰
+                            mChart.getAxisRight().setEnabled(false);
+
+                            XAxis xAxis = mChart.getXAxis();
+                            xAxis.setGranularity(1f);
+                            xAxis.setValueFormatter(new IAxisValueFormatter() {
+                                @Override
+                                public String getFormattedValue(float value, AxisBase axis) {
+                                    String val = null;
+                                    try {
+                                        val = xEntry.get((int) value);
+                                    } catch (IndexOutOfBoundsException e) {
+                                        axis.setGranularityEnabled(false);
+                                    }
+                                    return val;
+                                }
+                            });
+                            xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+
+                            YAxis leftAxis = mChart.getAxisLeft();
+
+                            leftAxis.setAxisMaximum(1000f);               //보여지는 최대
+                            leftAxis.setAxisMinimum(0f);
+
+                        } catch (Exception e) {
+
+                        }
                     }
 
                     @Override
@@ -281,7 +302,7 @@ public class LinechartSensor5 extends Fragment implements View.OnClickListener {
                     }
 
                     @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @android.support.annotation.Nullable String s) {
+                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
 
                     }
 

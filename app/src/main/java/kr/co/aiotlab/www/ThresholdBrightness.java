@@ -30,13 +30,13 @@ public class ThresholdBrightness extends Activity {
         getWindow().setAttributes(layoutParams);
 
         // 팝업창 크기 설정
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int) (width/1.9), (int) (height/2.8));
+////        DisplayMetrics dm = new DisplayMetrics();
+////        getWindowManager().getDefaultDisplay().getMetrics(dm);
+//
+//        int width = dm.widthPixels;
+//        int height = dm.heightPixels;
+//
+//        getWindow().setLayout((int) (width/1.9), (int) (height/2.8));
 
         btn_brightCancel = findViewById(R.id.btn_brightCancel);
         btn_brightOkay = findViewById(R.id.btn_brightOkay);

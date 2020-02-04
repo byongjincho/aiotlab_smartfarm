@@ -6,16 +6,11 @@
 
     <string-array name="sensors">
 
-        <item>온도(minute)</item>
-        <item>온도(day)</item>
-        <item>습도(minute)</item>
-        <item>습도(day)</item>
-        <item>조도(minute)</item>
-        <item>조도(day)</item>
-        <item>전력(minute)</item>
-        <item>전력(day)</item>
-        <item>열량지수(minute)</item>
-        <item>열량지수(day)</item>
+        <item>온도</item>
+        <item>습도</item>
+        <item>조도</item>
+        <item>전력</item>
+        <item>열량지수</item>
 
 
     </string-array>

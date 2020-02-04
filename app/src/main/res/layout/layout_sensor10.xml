@@ -48,12 +48,4 @@
         android:padding="6dp"
         android:layout_toLeftOf="@+id/txt_nextChart"/>
 
-    <TextView
-        android:id="@+id/txt_chart_date"
-        android:text="년/월/일"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
 </RelativeLayout>

@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -15,12 +13,15 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 public class SensorControlActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private Button checkButton;
     static TextView txt_port;
-    static TextView txt_ip;
+    public static TextView txt_ip;
     private Switch led_switch1, led_switch2, led_switch3, led_switch4;
     private Switch siren_switch1, siren_switch2;
     private Switch power_switch1, power_switch2, power_switch3, power_switch4, power_switch5, power_switch6, power_switch7;

@@ -1,6 +1,7 @@
 package kr.co.aiotlab.www.Main_UI;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -14,12 +15,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +29,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,6 +46,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import kr.co.aiotlab.www.R;
 import kr.co.aiotlab.www.ThresholdBrightness;
 import kr.co.aiotlab.www.ThresholdTemperature;
@@ -61,19 +63,17 @@ import static kr.co.aiotlab.www.MainActivity.temp;
 
 public class BottomFirstFragment extends Fragment implements View.OnClickListener {
 
+    private static final String WEATHER_STATE = "WEATHER_STATE";
+
     private SwipeRefreshLayout swipe_frag1;
     private TextView now_small_dust, now_big_dust,
             getCDStext, getGas, txt_getCo2, txt_current1;
     public static TextView txt_insidedust;
-    private ImageView weather_icon, th_brightness, th_temp, img_fire, img_guard, img_gas;
+    private ImageView th_brightness, th_temp;
     public static TextView getFire;
     private FirebaseDatabase mDatabase;
 
     public static TextView getTempText, getHumidityText, getInvasion;
-
-    // Json Object
-    JSONObject jsonObject, jsonObject_fire = null;
-    String jsonMQTT, jsonMQTT_fire;
 
     // 날씨 Flag
     private boolean findWeatherFlag = true;
@@ -91,6 +91,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
 
     View view;
 
+    @SuppressLint("MissingPermission")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -108,9 +109,6 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
         th_brightness = view.findViewById(R.id.th_brightness);
         getFire = view.findViewById(R.id.getFire);
         getInvasion = view.findViewById(R.id.getInvasion);
-        img_fire = view.findViewById(R.id.img_fire);
-        img_guard = view.findViewById(R.id.img_guard);
-        img_gas = view.findViewById(R.id.img_gas);
         getGas = view.findViewById(R.id.getGas);
         getFire = view.findViewById(R.id.getFire);
         txt_insidedust = view.findViewById(R.id.txt_insidedust);
@@ -125,6 +123,20 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
         img_weather = view.findViewById(R.id.img_weather);
         txt_date = view.findViewById(R.id.txt_date);
         txt_weather = view.findViewById(R.id.txt_weather_information);
+
+        // 날씨정보 가져오기 전에 이전 날씨정보 미리 보여주기
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences(WEATHER_STATE, Context.MODE_PRIVATE);
+        int w_i = sharedPreferences.getInt("WEATHER_IMAGE", R.drawable.sunny_icon);
+        String w_t = sharedPreferences.getString("WEATHER_TEXT", "맑음");
+        int t = sharedPreferences.getInt("TEMPERATURE", 0);
+        String w = sharedPreferences.getString("WIND", "-");
+        String h = sharedPreferences.getString("HUMIDITY", "-");
+
+        img_weather.setImageResource(w_i);
+        txt_weather.setText(w_t);
+        txt_temp.setText(String.valueOf(t));
+        txt_humidity.setText(h);
+        txt_wind.setText(w);
 
         /** GPS 연동을 위한 권한 체크 및 위치정보 찾기 */
         if (Build.VERSION.SDK_INT >= 23 &&
@@ -149,7 +161,6 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
             }
         }
 
-
         th_brightness.setOnClickListener(this);
         th_temp.setOnClickListener(this);
 
@@ -169,6 +180,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
         month = "03";
         day = "12";
         time = "10 : 32";
+
 
 
         /** 온습도 실시간 가져오기 */
@@ -205,8 +217,6 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                 double watt1 = Double.parseDouble(value) * 220;
                 int watt1_int = (int) watt1;
                 txt_current1.setText(String.valueOf(watt1_int));
-
-
             }
 
             @Override
@@ -260,6 +270,9 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
      * 날씨정보 받아오기
      */
     public void findWeather(String cityName) {
+        // 상태저장을 위한 preference객체생성
+        SharedPreferences save_preweather_state = getContext().getSharedPreferences(WEATHER_STATE, Context.MODE_PRIVATE);
+        final SharedPreferences.Editor editor_save_preweather_state = save_preweather_state.edit();
 
         //open weather api 받아오기
         String Url = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=27b1b8b908d5ad361af19ff8eee92989";
@@ -276,10 +289,12 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                     String temp = String.valueOf(main_object.getDouble("temp"));
                     String humidity = String.valueOf(main_object.getInt("humidity"));
                     String descroption = object.getString("description");
-                    String wind = String.valueOf(wind_object.getString("speed"));
+                    String wind = wind_object.getString("speed");
                     String city = response.getString("name");
 
                     txt_wind.setText(wind);
+                    editor_save_preweather_state.putString("WIND", wind);
+                    editor_save_preweather_state.apply();
 
                     //humidity 소숫점 제거
                     //받아온 데이터를 어떻게 output해줄지 결정
@@ -287,6 +302,8 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                         humidity = "100";
                     }
                     txt_humidity.setText(humidity);
+                    editor_save_preweather_state.putString("HUMIDITY", humidity);
+                    editor_save_preweather_state.apply();
 
                     //description(날씨)에 따라 그림 변화
                     // 안개
@@ -302,10 +319,15 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                             || descroption.equals("tornado")) {
                         img_weather.setImageResource(R.drawable.fog_icon);
                         txt_weather.setText("흐림");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.fog_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "흐림");
+
                         //맑음
                     } else if (descroption.equals("clear sky")) {
                         img_weather.setImageResource(R.drawable.sunny_icon);
                         txt_weather.setText("맑음");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.sunny_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "맑음");
                         //눈
                     } else if (descroption.equals("light snow")
                             || descroption.equals("snow")
@@ -318,6 +340,8 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                             || descroption.equals("heavy shower snow")) {
                         img_weather.setImageResource(R.drawable.snow_icon);
                         txt_weather.setText("눈 내림");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.snow_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "눈 내림");
                         // 구름
                     } else if (descroption.equals("scattered clouds")
                             || descroption.equals("few clouds")
@@ -325,6 +349,8 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                             || descroption.equals("overcast clouds")) {
                         img_weather.setImageResource(R.drawable.cloudy_icon);
                         txt_weather.setText("구름 많음");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.cloudy_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "구름 많음");
                         // 비
                     } else if (descroption.equals("thunderstorm")
                             || descroption.equals("thunderstorm with light rain")
@@ -340,6 +366,8 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                             || descroption.equals("heavy intensity shower rain")) {
                         img_weather.setImageResource(R.drawable.thunder_icon);
                         txt_weather.setText("폭우");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.thunder_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "폭우");
                     } else if (descroption.equals("light rain")
                             || descroption.equals("moderate rain")
                             || descroption.equals("shower rain")
@@ -347,6 +375,8 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                             || descroption.equals("light intensity shower rain")) {
                         img_weather.setImageResource(R.drawable.heavy_rain_icon);
                         txt_weather.setText("비");
+                        editor_save_preweather_state.putInt("WEATHER_IMAGE", R.drawable.heavy_rain_icon);
+                        editor_save_preweather_state.putString("WEATHER_TEXT", "비");
 
                     }
 
@@ -356,6 +386,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                     centi = Math.round(centi);
                     int i = (int) centi;
                     txt_temp.setText(String.valueOf(i));
+                    editor_save_preweather_state.putInt("TEMPERATURE", i);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -373,6 +404,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
         RequestQueue queue = Volley.newRequestQueue(getContext());
         queue.add(jor);
 
+        editor_save_preweather_state.apply();
 
     }
 
@@ -467,7 +499,6 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
             case R.id.th_brightness:
                 Intent intent1 = new Intent(getContext(), ThresholdBrightness.class);
                 startActivity(intent1);
-
                 break;
             case R.id.th_temp:
                 Intent intent2 = new Intent(getContext(), ThresholdTemperature.class);
@@ -475,11 +506,11 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
                 break;
         }
     }
-
     /**
      * 위치 정보 리스너
      */
     final LocationListener gpsLocationListener = new LocationListener() {
+        @SuppressLint("MissingPermission")
         public void onLocationChanged(Location location) {
             double now_longitude = location.getLongitude();
             double now_latitude = location.getLatitude();
@@ -641,17 +672,17 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
 
         if (mainCity.contains("인천")) {
             engAddress = "Incheon";
-        }else if (mainCity.contains("울산")) {
+        } else if (mainCity.contains("울산")) {
             engAddress = "Ulsan";
-        }else if (mainCity.contains("대전")) {
+        } else if (mainCity.contains("대전")) {
             engAddress = "Daejeon";
-        }else if (mainCity.contains("광주")) {
+        } else if (mainCity.contains("광주")) {
             engAddress = "Gwangju";
-        }else if (mainCity.contains("대구")) {
+        } else if (mainCity.contains("대구")) {
             engAddress = "Daegu";
-        }else if (mainCity.contains("제주")) {
+        } else if (mainCity.contains("제주")) {
             engAddress = "Jeju";
-        }else {
+        } else {
             engAddress = koreanAddress.replace("원주시", "Wonju-si")
                     .replace("강릉시", "Gangneung-si")    // 강원도
                     .replace("동해시", "Donghae-si")

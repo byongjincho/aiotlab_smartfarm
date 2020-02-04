@@ -34,13 +34,4 @@
         android:padding="6dp"
         android:text="이전" />
 
-    <TextView
-        android:id="@+id/txt_chart_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="년/월/일"
-        android:textStyle="bold" />
-
-
 </RelativeLayout>

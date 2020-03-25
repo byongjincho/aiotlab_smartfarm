@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void run() {
                 try {
                     IMqttToken token = client.connect();
+                    Log.d(TAG, "run: 1111" + token.getClient() + token.getTopics() + token.getException());
                     token.setActionCallback(new IMqttActionListener() {
                         @Override
                         public void onSuccess(IMqttToken asyncActionToken) {
@@ -445,7 +446,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFire.setText("안전");
                 getFire.setTextColor(Color.parseColor("#28BBED"));
                 if (fire_state.equals("ON")) {
-                    new SocketProtocol_Main().execute("6");
+                    new SocketProtocol().execute("6");
                     fire_state = "OFF";
                 }
 
@@ -453,7 +454,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFire.setText("불꽃 감지");
                 getFire.setTextColor(Color.RED);
                 if (fire_state.equals("OFF")) {
-                    new SocketProtocol_Main().execute("7");
+                    new SocketProtocol().execute("7");
                     fire_state = "ON";
                 }
             }

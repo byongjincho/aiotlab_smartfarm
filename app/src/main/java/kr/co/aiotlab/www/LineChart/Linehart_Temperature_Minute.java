@@ -43,7 +43,7 @@ import kr.co.aiotlab.www.R;
 
 import static kr.co.aiotlab.www.Main_UI.BottomFourthFragment.txt_day;
 
-public class LineChart_Temperature_Minute extends Fragment implements View.OnClickListener {
+public class Linehart_Temperature_Minute extends Fragment implements View.OnClickListener {
     public static final String TAG = "LINE1";
 
     private LineChart mChart;
@@ -62,8 +62,8 @@ public class LineChart_Temperature_Minute extends Fragment implements View.OnCli
     // 저장된 날짜 담아오기
     private String yearString, monthString, dayString;
 
-    public static LineChart_Temperature_Minute newInstance() {
-        LineChart_Temperature_Minute f = new LineChart_Temperature_Minute();
+    public static Linehart_Temperature_Minute newInstance() {
+        Linehart_Temperature_Minute f = new Linehart_Temperature_Minute();
         return f;
     }
 

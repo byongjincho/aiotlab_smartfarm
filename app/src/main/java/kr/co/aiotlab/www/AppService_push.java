@@ -93,6 +93,7 @@ public class AppService_push extends Service {
                         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
                         mqttConnectOptions.setAutomaticReconnect(true);
                         mqttConnectOptions.setKeepAliveInterval(10);
+                        Log.d(TAG, "run: 111111111111111" + mqttConnectOptions);
                         try {
                             final IMqttToken token = client_fire.connect(mqttConnectOptions);
 
@@ -308,7 +309,7 @@ public class AppService_push extends Service {
 
                             }
                         });
-                 new SocketProtocol_Main().execute("7");
+                 new SocketProtocol().execute("7");
                 startForeground(1, notification_fire);
 
                 Intent fireAlert = new Intent(getApplicationContext(), Activity_FireAlert.class);

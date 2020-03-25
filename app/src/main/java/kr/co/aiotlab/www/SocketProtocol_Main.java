@@ -17,7 +17,7 @@ class SocketProtocol_Main extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... strings) {
 
         IP_ADRESS = "222.113.57.108";
-        PORT = 4957;
+        PORT = 8245;
 
         try {
             try {

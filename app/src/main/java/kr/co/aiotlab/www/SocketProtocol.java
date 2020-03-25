@@ -1,5 +1,6 @@
 package kr.co.aiotlab.www;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
@@ -16,6 +17,7 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
     private int PORT;
 
 
+    @SuppressLint("WrongThread")
     @Override
     protected Void doInBackground(String... strings) {
         IP_ADRESS = SensorControlActivity.txt_ip.getText().toString();
@@ -28,6 +30,7 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
                         new OutputStreamWriter(
                                 socket.getOutputStream()));
                 printWriter.print(strings[0]);
+                Log.d("!!!", "doInBackground: " + strings[0]);
                 printWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();

@@ -32,7 +32,7 @@ import java.util.Date;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import kr.co.aiotlab.www.LineChart.LineChart_Temperature_Minute;
+import kr.co.aiotlab.www.LineChart.Linehart_Temperature_Minute;
 import kr.co.aiotlab.www.LineChart.Linechart_Calorie_Hour;
 import kr.co.aiotlab.www.LineChart.Linechart_Temperature_Hour;
 import kr.co.aiotlab.www.LineChart.Linechart_Humidity_Minute;
@@ -63,7 +63,6 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
     private Button btn_nowTime;
     private RadioGroup radioGroup;
     private RadioButton radioButton_minute, radioButton_hour;
-
 
     private ImageButton imgbtn_calendar;
 
@@ -224,7 +223,7 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
                 switch (checkedId) {
                     case R.id.radioBtn_minute_frag4:
                         if (sensor_select.getSelectedItemId() == 0)
-                            showFragment2(LineChart_Temperature_Minute.newInstance());
+                            showFragment2(Linehart_Temperature_Minute.newInstance());
                         else if (sensor_select.getSelectedItemId() == 1)
                             showFragment2(Linechart_Humidity_Minute.newInstance());
                         else if (sensor_select.getSelectedItemId() == 2)
@@ -267,7 +266,7 @@ public class BottomFourthFragment extends Fragment implements AdapterView.OnItem
             switch (position) {
                 // 맨 위부터 순서대로 0 ~.. 센서1 선택
                 case 0:
-                    showFragment2(LineChart_Temperature_Minute.newInstance());
+                    showFragment2(Linehart_Temperature_Minute.newInstance());
                     break;
                 case 1:
                     showFragment2(Linechart_Humidity_Minute.newInstance());

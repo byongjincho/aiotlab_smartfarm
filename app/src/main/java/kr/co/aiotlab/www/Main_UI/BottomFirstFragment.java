@@ -214,7 +214,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
-                double watt1 = Double.parseDouble(value) * 220;
+                long watt1 = Long.parseLong(value) * 220;
                 int watt1_int = (int) watt1;
                 txt_current1.setText(String.valueOf(watt1_int));
             }

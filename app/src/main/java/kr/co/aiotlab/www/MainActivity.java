@@ -17,13 +17,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -44,6 +37,12 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 import kr.co.aiotlab.www.Main_UI.BottomFirstFragment;
 import kr.co.aiotlab.www.Main_UI.BottomFourthFragment;
 import kr.co.aiotlab.www.Main_UI.BottomSecondFragment;
@@ -58,8 +57,6 @@ import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.txt_insidedust;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TextView profile_email, profile_name;
-    private FirebaseAuth auth;
     private long backBtnTime = 0;
     DrawerLayout mDrawerlayout;
     public static String temp, humi;
@@ -111,9 +108,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Firebase 로그인 정보 가져오기
-        auth = FirebaseAuth.getInstance();
-
         // FCM 현재 토큰 검색
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
@@ -155,79 +149,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /** MQTT init **/
         // mqtt 초기설정
-        new Thread(new Runnable() {
-            String clientId = MqttClient.generateClientId();
-            final MqttAndroidClient client =
-                    new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
-                            clientId);
-            @Override
-            public void run() {
-                try {
-                    IMqttToken token = client.connect();
-                    Log.d(TAG, "run: 1111" + token.getClient() + token.getTopics() + token.getException());
-                    token.setActionCallback(new IMqttActionListener() {
-                        @Override
-                        public void onSuccess(IMqttToken asyncActionToken) {
-                            // We are connected
-                            Log.d(TAG, "onSuccess: ");
-
-                            String topic = "Sensor/Dust_DHT22";
-
-                            int qos = 1;
-                            try {
-                                IMqttToken subToken = client.subscribe(topic, qos);
-                                subToken.setActionCallback(new IMqttActionListener() {
-                                    @Override
-                                    public void onSuccess(IMqttToken asyncActionToken) {
-                                        // The message was published
-                                        Log.d(TAG, "onSuccess: ");
-                                        client.setCallback(new MqttCallback() {
-                                            @Override
-                                            public void connectionLost(Throwable cause) {
-
-                                            }
-
-                                            @Override
-                                            public void messageArrived(String topic, MqttMessage message) throws Exception {
-                                                //Json 파싱
-                                                jsonMQTT = new String(message.getPayload());
-
-                                                jsonParse();
-                                            }
-
-                                            @Override
-                                            public void deliveryComplete(IMqttDeliveryToken token) {
-
-                                            }
-                                        });
-                                    }
-
-                                    @Override
-                                    public void onFailure(IMqttToken asyncActionToken,
-                                                          Throwable exception) {
-                                        // The subscription could not be performed, maybe the user was not
-                                        // authorized to subscribe on the specified topic e.g. using wildcards
-                                        Log.d(TAG, "onFailure: ");
-                                    }
-                                });
-                            } catch (MqttException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                            // Something went wrong e.g. connection timeout or firewall problems
-                            Log.d(TAG, "onFailure: ");
-
-                        }
-                    });
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        MqttSet ms = new MqttSet(getApplicationContext(), "222.113.57.108:1883");
+        ms.getDataFromServer();
 
         new Thread(new Runnable() {
             //불꽃감지 상태
@@ -398,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             //로그아웃
             case R.id.logout:
-                auth.signOut();
+                FirebaseAuth.getInstance().signOut();
                 Toast.makeText(this, "로그아웃 되었습니다.", LENGTH_SHORT).show();
                 finish();
                 break;
@@ -406,28 +329,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void jsonParse() {
-        Handler handler = new Handler(Looper.getMainLooper());
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    jsonObject = new JSONObject(jsonMQTT);
-                    temp = jsonObject.getString("temperature");
-                    int windchilltemp = jsonObject.getInt("windchill");
-                    humi = jsonObject.getString("humidity");
-                    dust = jsonObject.getInt("dust");
 
-                    txt_insidedust.setText(String.valueOf(dust));
-                    getTempText.setText(temp);
-                    getHumidityText.setText(humi);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     // 불꽃감지 MQTT통신으로 받아오기
     @SuppressLint("HandlerLeak")

@@ -45,6 +45,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Objects;
+import java.util.StringTokenizer;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -412,6 +413,7 @@ public class BottomFirstFragment extends Fragment implements View.OnClickListene
      * 미세먼지 관련 코딩
      */
     //findweather와 동일
+
     public void findDust() {
 
         String Url = "http://openapi.airkorea.or.kr/openapi/services/rest/ArpltnInforInqireSvc/getCtprvnRltmMesureDnsty?" +

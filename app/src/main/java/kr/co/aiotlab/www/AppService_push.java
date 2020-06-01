@@ -309,7 +309,7 @@ public class AppService_push extends Service {
 
                             }
                         });
-                 new SocketProtocol().execute("7");
+                 new SocketProtocol(getApplicationContext()).execute("7");
                 startForeground(1, notification_fire);
 
                 Intent fireAlert = new Intent(getApplicationContext(), Activity_FireAlert.class);

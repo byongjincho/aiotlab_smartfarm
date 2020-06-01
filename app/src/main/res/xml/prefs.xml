@@ -21,6 +21,13 @@
 
     </PreferenceCategory>
 
+    <EditTextPreference
+        android:key="ip_address"
+        android:title="IP주소를 입력해주세요"/>
+    <EditTextPreference
+        android:key="port"
+        android:title="Port를 입력해주세요"/>
+
     <PreferenceCategory android:title="auto 설정">
         <SwitchPreference
             android:id="@+id/autoSwitch"

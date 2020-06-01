@@ -1,8 +1,9 @@
 package kr.co.aiotlab.www;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Handler;
-import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -13,25 +14,23 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getHumidityText;
-import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getTempText;
-import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.txt_insidedust;
 
 public class MqttSet {
     private static final String TAG = "MQTT Set Class";
 
     private String address;
+    private String topic;
+    private int qos = 1;
     private String clientId = MqttClient.generateClientId();
     private Context context;
     private String mqttData = null;
 
 
-    public MqttSet(Context context, String address) {
+    public MqttSet(Context context, String address, String topic, int qos) {
         this.address = "tcp://" + address;
         this.context = context;
+        this.topic = topic;
+        this.qos = qos;
     }
 
     public void getDataFromServer() {
@@ -50,9 +49,6 @@ public class MqttSet {
                             // We are connected
                             Log.d(TAG, "onSuccess: ");
 
-                            String topic = "Sensor/Dust_DHT22";
-
-                            int qos = 1;
                             try {
                                 IMqttToken subToken = client.subscribe(topic, qos);
                                 subToken.setActionCallback(new IMqttActionListener() {
@@ -71,8 +67,17 @@ public class MqttSet {
                                                 //Json 파싱
                                                 mqttData = new String(message.getPayload());
 
-                                                JsonParse jsonParse = new JsonParse(mqttData);
-                                                jsonParse.parseData();
+                                                switch (topic) {
+                                                    case "Sensor/Fire_Motion":
+                                                        Message msg_fire = fire_handler.obtainMessage();
+                                                        fire_handler.sendMessage(msg_fire);
+                                                        break;
+                                                    case "Sensor/Dust_DHT22":
+                                                        JsonParse jsonParse = new JsonParse(context, mqttData);
+                                                        jsonParse.parseData();
+                                                        break;
+                                                }
+
 
                                                 Log.d(TAG, "@@@@@@: " + mqttData);
                                             }
@@ -111,4 +116,12 @@ public class MqttSet {
             }
         }).start();
     }
+
+    @SuppressLint("HandlerLeak")
+    final Handler fire_handler = new Handler() {
+        public void handleMessage(Message msg) {
+            JsonParse jsonParse = new JsonParse(context, mqttData);
+            jsonParse.parseData();
+        }
+    };
 }

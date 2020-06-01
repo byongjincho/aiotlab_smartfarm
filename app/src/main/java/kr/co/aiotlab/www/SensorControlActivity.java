@@ -20,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SensorControlActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private Button checkButton;
-    static TextView txt_port;
+    public static TextView txt_port;
     public static TextView txt_ip;
     private Switch led_switch1, led_switch2, led_switch3, led_switch4;
     private Switch siren_switch1, siren_switch2;
@@ -105,13 +105,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("1");
+                        new SocketProtocol(getApplicationContext()).execute("1");
                     }
                 } else if (!led_switch1.isChecked()) {
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("0");
+                        new SocketProtocol(getApplicationContext()).execute("0");
                     }
                 }
             }
@@ -124,13 +124,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("5");
+                        new SocketProtocol(getApplicationContext()).execute("5");
                     }
                 } else if (!led_switch2.isChecked()) {
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("4");
+                        new SocketProtocol(getApplicationContext()).execute("4");
                     }
                 }
             }
@@ -182,13 +182,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("7");
+                        new SocketProtocol(getApplicationContext()).execute("7");
                     }
                 } else if (!siren_switch1.isChecked()) {
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("6");
+                        new SocketProtocol(getApplicationContext()).execute("6");
                     }
                 }
             }
@@ -201,13 +201,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("3");
+                        new SocketProtocol(getApplicationContext()).execute("3");
                     }
                 } else if (!siren_switch2.isChecked()) {
                     if (txt_ip.getText().toString().equals("")) {
                         Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                     } else {
-                        new SocketProtocol().execute("2");
+                        new SocketProtocol(getApplicationContext()).execute("2");
                     }
                 }
             }
@@ -224,13 +224,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("11");
+                                new SocketProtocol(getApplicationContext()).execute("11");
                             }
                         } else if (!power_switch1.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("00");
+                                new SocketProtocol(getApplicationContext()).execute("00");
                             }
                         }
                     }
@@ -248,13 +248,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("AA");
+                                new SocketProtocol(getApplicationContext()).execute("AA");
                             }
                         } else if (!power_switch2.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("aa");
+                                new SocketProtocol(getApplicationContext()).execute("aa");
                             }
                         }
                     }
@@ -272,13 +272,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("BB");
+                                new SocketProtocol(getApplicationContext()).execute("BB");
                             }
                         } else if (!power_switch3.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("bb");
+                                new SocketProtocol(getApplicationContext()).execute("bb");
                             }
                         }
                     }
@@ -296,13 +296,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("CC");
+                                new SocketProtocol(getApplicationContext()).execute("CC");
                             }
                         } else if (!power_switch4.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("cc");
+                                new SocketProtocol(getApplicationContext()).execute("cc");
                             }
                         }
                     }
@@ -320,13 +320,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("DD");
+                                new SocketProtocol(getApplicationContext()).execute("DD");
                             }
                         } else if (!power_switch5.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("dd");
+                                new SocketProtocol(getApplicationContext()).execute("dd");
                             }
                         }
                     }
@@ -344,13 +344,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("EE");
+                                new SocketProtocol(getApplicationContext()).execute("EE");
                             }
                         } else if (!power_switch6.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("ee");
+                                new SocketProtocol(getApplicationContext()).execute("ee");
                             }
                         }
                     }
@@ -368,13 +368,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("FF");
+                                new SocketProtocol(getApplicationContext()).execute("FF");
                             }
                         } else if (!power_switch7.isChecked()) {
                             if (txt_ip.getText().toString().equals("")) {
                                 Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
                             } else {
-                                new SocketProtocol().execute("ff");
+                                new SocketProtocol(getApplicationContext()).execute("ff");
                             }
                         }
                     }

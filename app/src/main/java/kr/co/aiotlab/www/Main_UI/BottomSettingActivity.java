@@ -1,6 +1,7 @@
 package kr.co.aiotlab.www.Main_UI;
 
 import android.os.Bundle;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
@@ -12,6 +13,7 @@ import kr.co.aiotlab.www.R;
 
 public class BottomSettingActivity extends PreferenceActivity {
     SwitchPreference switchPreference;
+    EditTextPreference edt_ip, edt_port;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,9 @@ public class BottomSettingActivity extends PreferenceActivity {
         switchPreference = (SwitchPreference) findPreference("autoSafety");
         switchPreference.setSummaryOff("상태 : 수동");
         switchPreference.setSummaryOn("상태 : 자동");
+
+        edt_ip = (EditTextPreference) findPreference("ip_address");
+        edt_port = (EditTextPreference) findPreference("port");
 
         //설정 하면 설정값 summary 보여주기
         bindSummaryValue(findPreference("SETDUST"));

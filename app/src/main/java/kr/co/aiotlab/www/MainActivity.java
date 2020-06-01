@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DrawerLayout mDrawerlayout;
     public static String temp, humi;
     public static int dust;
-    private String fire_state = "OFF";
+    public static String fire_state = "OFF";
 
     JSONObject jsonObject, jsonObject_fire = null;
     String jsonMQTT, jsonMQTT_fire;
@@ -149,89 +149,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         /** MQTT init **/
         // mqtt 초기설정
-        MqttSet ms = new MqttSet(getApplicationContext(), "222.113.57.108:1883");
-        ms.getDataFromServer();
+        MqttSet ms_temp_humid_dust = new MqttSet(getApplicationContext(),
+                "222.113.57.108:1883",
+                "Sensor/Dust_DHT22",
+                1);
+        ms_temp_humid_dust.getDataFromServer();
 
-        new Thread(new Runnable() {
-            //불꽃감지 상태
-            String clientId_fire = MqttClient.generateClientId();
-            final MqttAndroidClient client_fire =
-                    new MqttAndroidClient(getApplicationContext(), "tcp://222.113.57.108:1883",
-                            clientId_fire);
-            @Override
-            public void run() {
-
-                MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
-                mqttConnectOptions.setAutomaticReconnect(true);
-                mqttConnectOptions.setKeepAliveInterval(10);
-                try {
-                    IMqttToken token = client_fire.connect();
-                    token.setActionCallback(new IMqttActionListener() {
-                        @Override
-                        public void onSuccess(IMqttToken asyncActionToken) {
-                            // We are connected
-                            Log.d(TAG, "onSuccess: ");
-
-                            String topic = "Sensor/Fire_Motion";
-
-                            int qos = 1;
-                            try {
-                                IMqttToken subToken = client_fire.subscribe(topic, qos);
-                                subToken.setActionCallback(new IMqttActionListener() {
-                                    @Override
-                                    public void onSuccess(IMqttToken asyncActionToken) {
-                                        // The message was published
-                                        Log.d(TAG, "onSuccess: ");
-                                        client_fire.setCallback(new MqttCallback() {
-                                            @Override
-                                            public void connectionLost(Throwable cause) {
-                                                getFire.setText("연결 끊김");
-
-                                            }
-
-                                            @Override
-                                            public void messageArrived(String topic, MqttMessage message) throws Exception {
-                                                //Json 파싱
-                                                jsonMQTT_fire = new String(message.getPayload());
-
-                                                Message msg_fire = fire_handler.obtainMessage();
-                                                fire_handler.sendMessage(msg_fire);
-                                            }
-
-                                            @Override
-                                            public void deliveryComplete(IMqttDeliveryToken token) {
-
-                                            }
-                                        });
-                                    }
-
-                                    @Override
-                                    public void onFailure(IMqttToken asyncActionToken,
-                                                          Throwable exception) {
-                                        // The subscription could not be performed, maybe the user was not
-                                        // authorized to subscribe on the specified topic e.g. using wildcards
-                                        Log.d(TAG, "onFailure: ");
-                                    }
-                                });
-                            } catch (MqttException e) {
-                                e.printStackTrace();
-                            }
-
-                        }
-
-                        @Override
-                        public void onFailure(IMqttToken asyncActionToken, Throwable exception) {
-                            // Something went wrong e.g. connection timeout or firewall problems
-                            Log.d(TAG, "onFailure: ");
-
-                        }
-                    });
-
-                } catch (MqttException e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+        MqttSet ms_fire = new MqttSet(getApplicationContext(),
+                "222.113.57.108:1883",
+                "Sensor/Fire_Motion",
+                1);
+        ms_fire.getDataFromServer();
 
     }
 
@@ -348,7 +276,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFire.setText("안전");
                 getFire.setTextColor(Color.parseColor("#28BBED"));
                 if (fire_state.equals("ON")) {
-                    new SocketProtocol().execute("6");
+                    new SocketProtocol(getApplicationContext()).execute("6");
                     fire_state = "OFF";
                 }
 
@@ -356,7 +284,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getFire.setText("불꽃 감지");
                 getFire.setTextColor(Color.RED);
                 if (fire_state.equals("OFF")) {
-                    new SocketProtocol().execute("7");
+                    new SocketProtocol(getApplicationContext()).execute("7");
                     fire_state = "ON";
                 }
             }

@@ -8,6 +8,7 @@ import android.widget.Button;
 
 import androidx.annotation.Nullable;
 
+// hi
 public class Activity_FireAlert extends Activity {
     Button alert_button;
 

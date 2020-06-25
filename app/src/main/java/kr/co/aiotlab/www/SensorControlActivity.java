@@ -99,255 +99,58 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
         txt_power_switch6.setOnClickListener(this);
         txt_power_switch7.setOnClickListener(this);
 
-        //switch1 이 ON됐을 때와 OFF됐을 때 동작
-        led_switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (led_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("1");
-                    }
-                } else if (!led_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("0");
-                    }
-                }
-            }
-        });
-        //switch2 이 ON됐을 때와 OFF됐을 때 동작
-        led_switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (led_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("5");
-                    }
-                } else if (!led_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("4");
-                    }
-                }
-            }
-        });
-        //switch3 이 ON됐을 때와 OFF됐을 때 동작
-        led_switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (led_switch3.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //명령 추가
-                    }
-                } else if (!led_switch3.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //명령 추가
-                    }
-                }
-            }
-        });
-        //switch4 이 ON됐을 때와 OFF됐을 때 동작
-        led_switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (led_switch4.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //명령 추가
-                    }
-                } else if (!led_switch4.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        //명령 추가
-                    }
-                }
-            }
-        });
+        SocketControl sc_led1 = new SocketControl(led_switch1, getApplicationContext());
+        sc_led1.setOnOffCommand("1", "0");
+        sc_led1.commitSocket();
 
-        //싸이렌 버튼
-        siren_switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (siren_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("7");
-                    }
-                } else if (!siren_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("6");
-                    }
-                }
-            }
-        });
+        SocketControl sc_led2 = new SocketControl(led_switch2, getApplicationContext());
+        sc_led2.setOnOffCommand("5", "4");
+        sc_led2.commitSocket();
 
-        siren_switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (siren_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("3");
-                    }
-                } else if (!siren_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("2");
-                    }
-                }
-            }
-        });
+        SocketControl sc_led3 = new SocketControl(led_switch3, getApplicationContext());
+        sc_led3.setOnOffCommand("", "");
+        sc_led3.commitSocket();
 
-        // 콘센트 제어 스위치
-        power_switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("11");
-                    }
-                } else if (!power_switch1.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("00");
-                    }
-                }
-            }
-        });
+        SocketControl sc_led4 = new SocketControl(led_switch4, getApplicationContext());
+        sc_led4.setOnOffCommand("", "");
+        sc_led4.commitSocket();
 
-        power_switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("AA");
-                    }
-                } else if (!power_switch2.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("aa");
-                    }
-                }
-            }
-        });
+        SocketControl sc_siren1 = new SocketControl(siren_switch1, getApplicationContext());
+        sc_siren1.setOnOffCommand("7", "6");
+        sc_siren1.commitSocket();
 
-        power_switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch3.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("BB");
-                    }
-                } else if (!power_switch3.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("bb");
-                    }
-                }
-            }
-        });
+        SocketControl sc_siren2 = new SocketControl(siren_switch2, getApplicationContext());
+        sc_siren2.setOnOffCommand("3", "2");
+        sc_siren2.commitSocket();
 
-        power_switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch4.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("CC");
-                    }
-                } else if (!power_switch4.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("cc");
-                    }
-                }
-            }
-        });
+        SocketControl sc_power1 = new SocketControl(power_switch1, getApplicationContext());
+        sc_power1.setOnOffCommand("11", "00");
+        sc_power1.commitSocket();
 
-        power_switch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch5.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("DD");
-                    }
-                } else if (!power_switch5.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("dd");
-                    }
-                }
-            }
-        });
+        SocketControl sc_power2 = new SocketControl(power_switch2, getApplicationContext());
+        sc_power2.setOnOffCommand("AA", "aa");
+        sc_power2.commitSocket();
 
-        power_switch6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch6.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("EE");
-                    }
-                } else if (!power_switch6.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("ee");
-                    }
-                }
-            }
-        });
+        SocketControl sc_power3 = new SocketControl(power_switch3, getApplicationContext());
+        sc_power3.setOnOffCommand("BB", "bb");
+        sc_power3.commitSocket();
 
-        power_switch7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (power_switch7.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("FF");
-                    }
-                } else if (!power_switch7.isChecked()) {
-                    if (txt_ip.getText().toString().equals("")) {
-                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                    } else {
-                        new SocketProtocol(getApplicationContext()).execute("ff");
-                    }
-                }
-            }
-        });
+        SocketControl sc_power4 = new SocketControl(power_switch4, getApplicationContext());
+        sc_power4.setOnOffCommand("CC", "cc");
+        sc_power4.commitSocket();
+
+        SocketControl sc_power5 = new SocketControl(power_switch5, getApplicationContext());
+        sc_power5.setOnOffCommand("DD", "dd");
+        sc_power5.commitSocket();
+
+        SocketControl sc_power6 = new SocketControl(power_switch6, getApplicationContext());
+        sc_power6.setOnOffCommand("EE", "ee");
+        sc_power6.commitSocket();
+
+        SocketControl sc_power7 = new SocketControl(power_switch7, getApplicationContext());
+        sc_power7.setOnOffCommand("FF", "ff");
+        sc_power7.commitSocket();
+
     }
 
     @Override

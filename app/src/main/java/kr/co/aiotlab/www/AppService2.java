@@ -95,50 +95,6 @@ public class AppService2 extends Service {
         }
     }
 
-    //SendMessage의 소켓 통신을 통해 값 전달
-    private void goSocketProtocol(String i) {
-        new SendMessage().executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, i);
-    }
-
-    //소켓 통신을 하기 위한 모듈
-    class SendMessage extends AsyncTask<String, Void, Void> {
-        private Exception exception;
-        private String IP_ADRESS;
-        private int PORT;
-
-        @Override
-        protected Void doInBackground(String... strings) {
-            // sharedPreference에 저장된 값을 불러와서 IP, PORT에 대입
-            SharedPreferences ip_files = getSharedPreferences("IP_files", MODE_PRIVATE);
-            SharedPreferences port_files = getSharedPreferences("PORT_files", MODE_PRIVATE);
-
-            String ip_address = ip_files.getString("IP", "0");
-            String port_num = port_files.getString("PORT", "0");
-
-            IP_ADRESS = ip_address;
-            PORT = Integer.parseInt(port_num);
-
-            try {
-
-                try {
-                    Socket socket = new Socket(IP_ADRESS, PORT);
-                    PrintWriter printWriter = new PrintWriter(
-                            new OutputStreamWriter(
-                                    socket.getOutputStream()));
-                    printWriter.print(strings[0]);
-                    printWriter.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } catch (Exception e) {
-                this.exception = e;
-                return null;
-            }
-            return null;
-        }
-
-    }
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {

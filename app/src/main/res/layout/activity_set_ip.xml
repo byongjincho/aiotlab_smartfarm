@@ -6,11 +6,11 @@
     android:gravity="center"
     android:padding="15dp">
 
+
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/ipaddress"/>
-
+        android:src="@drawable/ipaddress" />
 
     <LinearLayout
         android:layout_width="match_parent"

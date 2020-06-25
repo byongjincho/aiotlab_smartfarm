@@ -12,9 +12,6 @@ import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import static kr.co.aiotlab.www.SensorControlActivity.txt_ip;
-import static kr.co.aiotlab.www.SensorControlActivity.txt_port;
-
 //소켓 통신을 하기 위한 모듈
 class SocketProtocol extends AsyncTask<String, Void, Void> {
     private Exception exception;
@@ -22,7 +19,7 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
     private int PORT;
     private Context context;
 
-    public SocketProtocol(Context context) {
+    SocketProtocol(Context context) {
         this.context = context;
     }
 
@@ -32,7 +29,7 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         IP_ADRESS = sharedPreferences.getString("ip_address", "222.113.57.108");
         PORT = Integer.parseInt(sharedPreferences.getString("port", "4957"));
-        Log.d("!!!", "doInBackground: " + IP_ADRESS + PORT);
+
         try {
             try {
                 Socket socket = new Socket(IP_ADRESS, PORT);
@@ -40,12 +37,11 @@ class SocketProtocol extends AsyncTask<String, Void, Void> {
                         new OutputStreamWriter(
                                 socket.getOutputStream()));
                 printWriter.print(strings[0]);
-                Log.d("!!!", "doInBackground: " + strings[0]);
                 printWriter.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             this.exception = e;
         }
         return null;

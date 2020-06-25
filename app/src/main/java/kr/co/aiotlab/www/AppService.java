@@ -205,14 +205,10 @@ public class AppService extends Service {
         @Override
         protected Void doInBackground(String... strings) {
             // sharedPreference에 저장된 값을 불러와서 IP, PORT에 대입
-            SharedPreferences ip_files = getSharedPreferences("IP_files", MODE_PRIVATE);
-            SharedPreferences port_files = getSharedPreferences("PORT_files", MODE_PRIVATE);
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-            String ip_address = ip_files.getString("IP", "0");
-            String port_num = port_files.getString("PORT", "0");
-
-            IP_ADRESS = ip_address;
-            PORT = Integer.parseInt(port_num);
+            IP_ADRESS = sharedPreferences.getString("ip_address", "222.113.57.108");
+            PORT = Integer.parseInt(sharedPreferences.getString("port", "4957"));
 
             try {
 

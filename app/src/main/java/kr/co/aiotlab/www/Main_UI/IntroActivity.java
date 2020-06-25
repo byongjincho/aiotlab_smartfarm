@@ -25,7 +25,7 @@ public class IntroActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 2000);           // 몇 초간 띄우고 다음 액티비티로 넘어갈지 결정
+        }, 3000);           // 몇 초간 띄우고 다음 액티비티로 넘어갈지 결정
 
     }
 }

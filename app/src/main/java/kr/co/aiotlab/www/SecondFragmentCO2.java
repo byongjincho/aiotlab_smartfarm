@@ -29,7 +29,6 @@ public class SecondFragmentCO2 extends Fragment {
 
     private LineChart mChart;
 
-
     private View view;
     @Nullable
     @Override

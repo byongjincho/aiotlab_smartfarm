@@ -1,10 +1,14 @@
 package kr.co.aiotlab.www;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -19,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import androidx.annotation.NonNull;
@@ -34,6 +39,7 @@ import kr.co.aiotlab.www.Main_UI.BottomSettingActivity;
 import kr.co.aiotlab.www.Main_UI.BottomThirdFragment;
 
 import static android.widget.Toast.LENGTH_SHORT;
+import static kr.co.aiotlab.www.Main_UI.BottomFirstFragment.getFire;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -88,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // FCM 현재 토큰 검색 (현재 사용 안함)
+        // FCM 현재 토큰 검색
         FirebaseInstanceId.getInstance().getInstanceId()
                 .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                     @Override
@@ -128,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nav_View.setNavigationItemSelectedListener(this);
 
         /** MQTT init **/
-        // MQTT 실시간 정보 받아오기 (브로커 연동)
+        // mqtt 초기설정
         MqttSet ms_temp_humid_dust = new MqttSet(getApplicationContext(),
                 "222.113.57.108:1883",
                 "Sensor/Dust_DHT22",
@@ -142,7 +148,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ms_fire.getDataFromServer();
 
     }
-
 
     //getAutorun은 BottomSettingActivity의 스위치 상태를 보고 ON이면 동작, OFF면 일시중지하는 함수로, 생명주기에서 MainActivity로 돌아갈 때(onResume/ onRestart) 확인하는 함수.
     private void getAutorun() {
@@ -237,6 +242,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+
+    // 불꽃감지 MQTT통신으로 받아오기
+    @SuppressLint("HandlerLeak")
+    final Handler fire_handler = new Handler() {
+        public void handleMessage(Message msg) {
+            jsonParse_fire();
+        }
+    };
+
+    private void jsonParse_fire() {
+        try {
+            jsonObject_fire = new JSONObject(jsonMQTT_fire);
+            String fire = jsonObject_fire.getString("fire");
+
+            if (fire.equals("1")) {
+                getFire.setText("안전");
+                getFire.setTextColor(Color.parseColor("#28BBED"));
+                if (fire_state.equals("ON")) {
+                    new SocketProtocol(getApplicationContext()).execute("6");
+                    fire_state = "OFF";
+                }
+
+            } else {
+                getFire.setText("불꽃 감지");
+                getFire.setTextColor(Color.RED);
+                if (fire_state.equals("OFF")) {
+                    new SocketProtocol(getApplicationContext()).execute("7");
+                    fire_state = "ON";
+                }
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     /**
      * 뒤로가기 버튼이 눌렸을 경우 동작
@@ -338,7 +380,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
     }
-
 
     @Override
     protected void onRestart() {

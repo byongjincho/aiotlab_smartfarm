@@ -17,18 +17,14 @@ public class SwitchNameSetting extends Activity {
 
     private EditText edt_Name;
     private Button okayButton, cancelButton;
-    private String remember_state_name;
+    public static String remember_state_name;
 
-    public SwitchNameSetting(String remember_state_name) {
-        this.remember_state_name = remember_state_name;
-
-    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.nameset_led1);
+        setContentView(R.layout.nameset);
         // 팝업창이 뜨면 뒷 배경 블러처리
         WindowManager.LayoutParams  layoutParams = new WindowManager.LayoutParams();
         layoutParams.flags  = WindowManager.LayoutParams.FLAG_DIM_BEHIND;
@@ -46,7 +42,7 @@ public class SwitchNameSetting extends Activity {
 
         okayButton = findViewById(R.id.btn_led1Okay);
         cancelButton = findViewById(R.id.btn_led1Cancel);
-        edt_Name= findViewById(R.id.edt_led1);
+        edt_Name= findViewById(R.id.edt_nameset);
 
 
         SharedPreferences led1name = getSharedPreferences("NAME", MODE_PRIVATE);

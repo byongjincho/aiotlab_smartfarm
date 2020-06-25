@@ -16,6 +16,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import static kr.co.aiotlab.www.SwitchNameSetting.remember_state_name;
+
 
 public class SensorControlActivity extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
@@ -217,229 +219,203 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
         power_switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch1.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("11");
-                            }
-                        } else if (!power_switch1.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("00");
-                            }
-                        }
+                if (power_switch1.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("11");
                     }
-                });
+                } else if (!power_switch1.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("00");
+                    }
+                }
             }
         });
 
         power_switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch2.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("AA");
-                            }
-                        } else if (!power_switch2.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("aa");
-                            }
-                        }
+                if (power_switch2.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("AA");
                     }
-                });
+                } else if (!power_switch2.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("aa");
+                    }
+                }
             }
         });
 
         power_switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch3.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("BB");
-                            }
-                        } else if (!power_switch3.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("bb");
-                            }
-                        }
+                if (power_switch3.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("BB");
                     }
-                });
+                } else if (!power_switch3.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("bb");
+                    }
+                }
             }
         });
 
         power_switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch4.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("CC");
-                            }
-                        } else if (!power_switch4.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("cc");
-                            }
-                        }
+                if (power_switch4.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("CC");
                     }
-                });
+                } else if (!power_switch4.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("cc");
+                    }
+                }
             }
         });
 
         power_switch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch5.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("DD");
-                            }
-                        } else if (!power_switch5.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("dd");
-                            }
-                        }
+                if (power_switch5.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("DD");
                     }
-                });
+                } else if (!power_switch5.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("dd");
+                    }
+                }
             }
         });
 
         power_switch6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch6.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("EE");
-                            }
-                        } else if (!power_switch6.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("ee");
-                            }
-                        }
+                if (power_switch6.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("EE");
                     }
-                });
+                } else if (!power_switch6.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("ee");
+                    }
+                }
             }
         });
 
         power_switch7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                power_switch7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                        if (power_switch7.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("FF");
-                            }
-                        } else if (!power_switch7.isChecked()) {
-                            if (txt_ip.getText().toString().equals("")) {
-                                Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
-                            } else {
-                                new SocketProtocol(getApplicationContext()).execute("ff");
-                            }
-                        }
+                if (power_switch7.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("FF");
                     }
-                });
+                } else if (!power_switch7.isChecked()) {
+                    if (txt_ip.getText().toString().equals("")) {
+                        Toast.makeText(getApplicationContext(), "IP주소를 입력해주세요", Toast.LENGTH_SHORT).show();
+                    } else {
+                        new SocketProtocol(getApplicationContext()).execute("ff");
+                    }
+                }
             }
         });
-
-
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.txt_ledswitch1:
-                SwitchNameSetting sns_led1 = new SwitchNameSetting("LED1");
-                
-                Intent led1 = new Intent(getApplicationContext(), sns_led1.getClass());
+                remember_state_name = "led1";
+                Intent led1 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(led1);
                 break;
             case R.id.txt_ledswitch2:
-                Intent led2 = new Intent(getApplicationContext(), SwitchNameSetting_LED2.class);
+                remember_state_name = "led2";
+                Intent led2 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(led2);
                 break;
             case R.id.txt_ledswitch3:
-                Intent led3 = new Intent(getApplicationContext(), SwitchNameSetting_LED3.class);
+                remember_state_name = "led3";
+                Intent led3 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(led3);
                 break;
             case R.id.txt_ledswitch4:
-                Intent led4 = new Intent(getApplicationContext(), SwitchNameSetting_LED4.class);
+                remember_state_name = "led4";
+                Intent led4 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(led4);
                 break;
             case R.id.txt_Sirenswitch1:
-                Intent siren1 = new Intent(getApplicationContext(), SwitchNameSetting_Siren1.class);
+                remember_state_name = "siren1";
+                Intent siren1 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(siren1);
                 break;
             case R.id.txt_Sirenswitch2:
-                Intent siren2 = new Intent(getApplicationContext(), SwitchNameSetting_Siren2.class);
+                remember_state_name = "siren2";
+                Intent siren2 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(siren2);
                 break;
             case R.id.txt_power_switch1:
-                Intent power1 = new Intent(getApplicationContext(), SwitchNameSetting_Power1.class);
+                remember_state_name = "power1";
+                Intent power1 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power1);
                 break;
             case R.id.txt_power_switch2:
-                Intent power2 = new Intent(getApplicationContext(), SwitchNameSetting_Power2.class);
+                remember_state_name = "power2";
+                Intent power2 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power2);
                 break;
             case R.id.txt_power_switch3:
-                Intent power3 = new Intent(getApplicationContext(), SwitchNameSetting_Power3.class);
+                remember_state_name = "power3";
+                Intent power3 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power3);
                 break;
             case R.id.txt_power_switch4:
-                Intent power4 = new Intent(getApplicationContext(), SwitchNameSetting_Power4.class);
+                remember_state_name = "power4";
+                Intent power4 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power4);
                 break;
             case R.id.txt_power_switch5:
-                Intent power5 = new Intent(getApplicationContext(), SwitchNameSetting_Power5.class);
+                remember_state_name = "power5";
+                Intent power5 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power5);
                 break;
             case R.id.txt_power_switch6:
-                Intent power6 = new Intent(getApplicationContext(), SwitchNameSetting_Power6.class);
+                remember_state_name = "power6";
+                Intent power6 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power6);
                 break;
             case R.id.txt_power_switch7:
-                Intent power7 = new Intent(getApplicationContext(), SwitchNameSetting_Power7.class);
+                remember_state_name = "power7";
+                Intent power7 = new Intent(getApplicationContext(), SwitchNameSetting.class);
                 startActivity(power7);
                 break;
         }
@@ -489,7 +465,7 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
         power_switch7.setChecked(power_switch7_state.getBoolean("power_switch7", true));
 
         // 이름 저장하면 반영
-        SharedPreferences sharedPreferences_led = getSharedPreferences("NAME_LED", MODE_PRIVATE);
+        SharedPreferences sharedPreferences_led = getSharedPreferences("NAME", MODE_PRIVATE);
         String nameled1 = sharedPreferences_led.getString("led1", "name");
         String nameled2 = sharedPreferences_led.getString("led2", "name");
         String nameled3 = sharedPreferences_led.getString("led3", "name");
@@ -499,13 +475,13 @@ public class SensorControlActivity extends AppCompatActivity implements View.OnC
         txt_led_switch3.setText(nameled3);
         txt_led_switch4.setText(nameled4);
 
-        SharedPreferences sharedPreferences_siren = getSharedPreferences("NAME_SIREN", MODE_PRIVATE);
+        SharedPreferences sharedPreferences_siren = getSharedPreferences("NAME", MODE_PRIVATE);
         String namesiren1 = sharedPreferences_siren.getString("siren1", "name");
         String namesiren2 = sharedPreferences_siren.getString("siren2", "name");
         txt_siren_switch1.setText(namesiren1);
         txt_siren_switch2.setText(namesiren2);
 
-        SharedPreferences sharedPreferences_power = getSharedPreferences("NAME_POWER", MODE_PRIVATE);
+        SharedPreferences sharedPreferences_power = getSharedPreferences("NAME", MODE_PRIVATE);
         String namepower1 = sharedPreferences_power.getString("power1", "name");
         String namepower2 = sharedPreferences_power.getString("power2", "name");
         String namepower3 = sharedPreferences_power.getString("power3", "name");

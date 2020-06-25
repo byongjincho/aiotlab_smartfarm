@@ -24,7 +24,6 @@ import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 
 import java.util.ArrayList;
 
-
 public class SecondFragmentCO2 extends Fragment {
 
     private LineChart mChart;
@@ -44,14 +43,12 @@ public class SecondFragmentCO2 extends Fragment {
         // {
         LimitLine upper_limit = new LimitLine(1000,"나쁨");
 
-
         upper_limit.setLineWidth(4f);
         upper_limit.setLineColor(Color.YELLOW);
         upper_limit.enableDashedLine(10f,10f,0f);
         upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
         upper_limit.setTextColor(Color.RED);
         upper_limit.setTextSize(15f);
-
 
         // 상,하안선 세부설정
         YAxis leftAxis = mChart.getAxisLeft();
@@ -63,6 +60,7 @@ public class SecondFragmentCO2 extends Fragment {
         leftAxis.setDrawLimitLinesBehindData(true);
         //}
 
+        // 수정
 
         // 오른쪽 와이축 없앰
         mChart.getAxisRight().setEnabled(false);

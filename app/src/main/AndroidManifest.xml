@@ -39,49 +39,11 @@
         <activity android:name="kr.co.aiotlab.www.SingupActivity" />
         <activity android:name="kr.co.aiotlab.www.SensorControlActivity" />
         <activity android:name="kr.co.aiotlab.www.EnterIPandPort" />
+        <activity android:name=".SwitchNameSetting"/>
         <activity
             android:name="kr.co.aiotlab.www.Activity_FireAlert"
             android:launchMode="singleTop" />
 
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_LED1"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_LED2"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_LED3"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_LED4"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Siren1"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Siren2"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power1"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power2"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power3"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power4"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power5"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power6"
-            android:theme="@style/AppTheme.CustomTheme" />
-        <activity
-            android:name="kr.co.aiotlab.www.SwitchNameSetting_Power7"
-            android:theme="@style/AppTheme.CustomTheme" />
         <activity android:name=".IP_Setting_Activity" />
 
         <activity
